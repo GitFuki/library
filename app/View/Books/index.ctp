@@ -1,5 +1,18 @@
 <div class="books index">
 	<h2><?php echo __('Books'); ?></h2>
+
+	//add the search box
+	<?php echo $this->Form->create('Book', array('action' =>'search'));
+	if(!isset($searchQuery)){
+		$searchQuery ='';
+	}
+	echo $this->Form->input('searchQuery', array('value'=>h($searchQuery)));
+	echo $this->Form->end(__('Search'));
+	?>
+
+
+
+
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

@@ -211,4 +211,32 @@ class Book extends AppModel {
 		)
 	);
 
+    //Add $findMethods property and the _findSearch() method to implement the search query.
+public $findMethods = array('search' => true);
+    protected function _findSearch($state, $query, $results = array()){
+        if($state === 'before'){
+            $searchQuery = Hash::get($query, 'searchQuery');
+            $searchConditions = array(
+                'or' => array(
+                    "{$this->alias}.name LIKE" => '%' . $searchQuery . '%',
+                    /*"{$this->alias}.author LIKE" => '%' . $searchQuery . '%'*/
+                )
+            );
+            $query['conditions'] = array_merge($searchConditions, (array)$query['conditions']);
+            return $query;
+        }
+        return $results;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

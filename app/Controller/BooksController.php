@@ -121,4 +121,45 @@ class BooksController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+
+	//Adding search() action
+    public function search(){
+        if($this->request->is('put') || $this->request->is('post')){
+            return $this->redirect(array(
+                '?' => array(
+                    'q' =>$this->request->data('Book.searchQuery')
+                )
+                ));
+        }
+            $this->Book->recursive =0;
+            $searchQuery = $this->request->query('q');
+            $this->Paginator->settings = array(
+                'Book' => array(
+                    'findType' => 'search',
+                    'searchQuery' => $searchQuery
+                )
+            );
+            $this->set('books', $this->Paginator->paginate());
+            $this->set('searchquery', $searchQuery);
+            $this->render('index');
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
