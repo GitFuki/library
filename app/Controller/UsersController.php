@@ -17,6 +17,11 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('add');
+    }
+
 /**
  * index method
  *
@@ -38,8 +43,9 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+        $this->set('user', $this->User->findById($id));
+		/*$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->set('user', $this->User->find('first', $options));*/
 	}
 
 /**
@@ -78,8 +84,10 @@ class UsersController extends AppController {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
+            $this->request->data = $this->User->findById($id);
+            unset($this->request->data['User']['password']);
+			/*$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);*/
 		}
 	}
 
