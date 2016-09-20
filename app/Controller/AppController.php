@@ -31,10 +31,10 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = array('DebugKit.Toolbar');
 
     /*Adding AuthComponent class for一定のアクションにログインを 必要とさせる、ユーザーのサインインとサインアウトの処理、またログインユーザーがアクションに 到達することが許可されているかの認証に責任を持ちます。*/
-    public $component = array(
+    public $components = array(
+        'DebugKit.Toolbar',
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
@@ -53,10 +53,11 @@ class AppController extends Controller {
         )
     );
     /* setting beforeFilter function to allow index and view action without user login, so that any site visitors can read the entries.*/
-    public  function beforeFilter()  {
+    public function beforeFilter() {
+        $this->log("test test test", LOG_ERR);
+        $this->log(print_r($this->Auth, true), LOG_ERR);
         $this->Auth->allow('index', 'view');
     }
-
 
 
 }
