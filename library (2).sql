@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016 年 9 朁E20 日 16:52
+-- Generation Time: 2016 年 9 朁E21 日 00:11
 -- サーバのバージョン： 5.5.49-log
--- PHP Version: 7.0.6
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -167,16 +167,26 @@ INSERT INTO `publishers` (`id`, `created_time`, `modified_time`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `tel` varchar(20) NOT NULL,
   `birthday` date NOT NULL,
   `email` varchar(20) NOT NULL,
-  `password` varchar(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(123) NOT NULL,
   `created_time` datetime NOT NULL,
   `modified_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `users`
+--
+
+INSERT INTO `users` (`id`, `last_name`, `first_name`, `tel`, `birthday`, `email`, `username`, `password`, `created_time`, `modified_time`) VALUES
+(1, 'sss', 'sss', 'sss', '2016-09-20', 'ss@gmail.com', 'ss', 'ss', '2016-09-20 10:13:00', '2016-09-20 10:13:00'),
+(2, 'ssdf', 'sfd', 'sdfa', '2016-09-20', 'asdfa@gmail.com', '1234', '$2a$10$ocPA8KJnMMzUISGJdYCWOuRDy36AeJFJ19TBEosNyMbzfNsHWb.JC', '2016-09-20 22:18:00', '2016-09-20 22:18:00'),
+(3, 'sfhg', 'fgfh', 'dfgf', '2016-09-20', 'fgfg@gmail.com', '2345', '$2a$10$fRJ', '2016-09-20 22:43:00', '2016-09-20 22:43:00');
 
 --
 -- Indexes for dumped tables
@@ -219,6 +229,12 @@ ALTER TABLE `publishers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -252,6 +268,11 @@ ALTER TABLE `fields`
 --
 ALTER TABLE `publishers`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
