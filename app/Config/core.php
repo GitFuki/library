@@ -225,7 +225,7 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', '1234');
+	Configure::write('Security.salt', 'strengthpassword');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.

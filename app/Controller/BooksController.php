@@ -1,4 +1,5 @@
 <?php
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 App::uses('AppController', 'Controller');
 /**
  * Books Controller
@@ -25,6 +26,16 @@ class BooksController extends AppController {
  * @return void
  */
 	public function index() {
+
+        $passwordHasher = new BlowfishPasswordHasher();
+        //$passwordHasher->hash("1234");
+        print_r($passwordHasher->hash("1234"));
+
+
+
+
+
+
 		$this->Book->recursive = 0;
         //ページネータをセット
         $this->Paginator->settings = array(
@@ -39,7 +50,7 @@ class BooksController extends AppController {
 
 /**
  * view method
- *
+ *00000000
  * @throws NotFoundException
  * @param string $id
  * @return void

@@ -38,7 +38,7 @@ class AppController extends Controller {
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'posts',
+                'controller' => 'books',
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
@@ -49,14 +49,24 @@ class AppController extends Controller {
             'authenticate' => array(
                 'Form' => array(
                     'passwordHasher' => 'Blowfish')
-            )
+            ),
+            'authorize' => array('Controller')
         )
     );
+
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+        // デフォルトは拒否
+        return false;
+    }
     /* setting beforeFilter function to allow index and view action without user login, so that any site visitors can read the entries.*/
     public function beforeFilter() {
         $this->log("test test test", LOG_ERR);
         $this->log(print_r($this->Auth, true), LOG_ERR);
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow('index', 'view', 'search');
     }
 
 
