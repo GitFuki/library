@@ -1,10 +1,10 @@
 <?php
-App::uses('PublishersController', 'Controller');
+App::uses('BookinglistsController', 'Controller');
 
 /**
- * PublishersController Test Case
+ * BookinglistsController Test Case
  */
-class PublishersControllerTest extends ControllerTestCase {
+class BookinglistsControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -12,13 +12,9 @@ class PublishersControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.publisher',
-		'app.book',
-		'app.author',
-		'app.field',
 		'app.bookinglist',
-		'app.user',
-		'app.borrowinglist'
+		'app.book',
+		'app.user'
 	);
 
 /**

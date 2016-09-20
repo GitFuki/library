@@ -16,6 +16,8 @@ class BooksController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session', 'Flash');
+    //
+    public $helpers = array('Paginator');
 
 /**
  * index method
@@ -24,6 +26,14 @@ class BooksController extends AppController {
  */
 	public function index() {
 		$this->Book->recursive = 0;
+        //ページネータをセット
+        $this->Paginator->settings = array(
+            'Book' => array(
+                'paramType' => 'querystring',
+                'limit' => 5,
+                'maxLimit' => 5,
+                'order' => array(
+                    'Book.id' => 'asc')));
 		$this->set('books', $this->Paginator->paginate());
 	}
 
@@ -59,7 +69,8 @@ class BooksController extends AppController {
 		}
 		$authors = $this->Book->Author->find('list');
 		$publishers = $this->Book->Publisher->find('list');
-		$this->set(compact('authors', 'publishers'));
+		$fields = $this->Book->Field->find('list');
+		$this->set(compact('authors', 'publishers', 'fields'));
 	}
 
 /**
@@ -86,7 +97,8 @@ class BooksController extends AppController {
 		}
 		$authors = $this->Book->Author->find('list');
 		$publishers = $this->Book->Publisher->find('list');
-		$this->set(compact('authors', 'publishers'));
+		$fields = $this->Book->Field->find('list');
+		$this->set(compact('authors', 'publishers', 'fields'));
 	}
 
 /**
@@ -110,21 +122,48 @@ class BooksController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-    /**
-     * search method
-     *
-     * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
-    public function search() {
+
+
+	//Adding search() action first detects a POST request and then does a super-quick implementation of the Post/Redirect/Get design pattern.
+    public function search(){
+
+        //searching text, for example, "html", will post to the search() action first and then issue a redirect to /books/index?q=html.
+        if($this->request->is('put') || $this->request->is('post')){
+            return $this->redirect(array(
+                '?' => array(
+                    'q' =>$this->request->data('Book.searchQuery')
+                )
+                ));
+        }
+            $this->Book->recursive =0;
+            $searchQuery = $this->request->query('q');
+
+        //Configure the Book component using the following setting.
+            $this->Paginator->settings = array(
+                'Book' => array(
+                    'findType' => 'search',
+                    'searchQuery' => $searchQuery
+                )
+            );
+            $this->set('books', $this->Paginator->paginate());
+            $this->set('searchQuery', $searchQuery);
+            $this->render('index');
+
+
 
 
     }
 
-    public function search_form() {
-        $this->request
 
-    }
+
+
+
+
+
+
+
+
+
+
 
 }

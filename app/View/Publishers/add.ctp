@@ -3,6 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Add Publisher'); ?></legend>
 	<?php
+		echo $this->Form->input('created_time');
+		echo $this->Form->input('modified_time');
 		echo $this->Form->input('name');
 	?>
 	</fieldset>

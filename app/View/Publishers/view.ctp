@@ -6,14 +6,14 @@
 			<?php echo h($publisher['Publisher']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created'); ?></dt>
+		<dt><?php echo __('Created Time'); ?></dt>
 		<dd>
-			<?php echo h($publisher['Publisher']['created']); ?>
+			<?php echo h($publisher['Publisher']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
+		<dt><?php echo __('Modified Time'); ?></dt>
 		<dd>
-			<?php echo h($publisher['Publisher']['modified']); ?>
+			<?php echo h($publisher['Publisher']['modified_time']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -44,12 +44,14 @@
 		<th><?php echo __('Author Id'); ?></th>
 		<th><?php echo __('Publisher Id'); ?></th>
 		<th><?php echo __('Published'); ?></th>
+		<th><?php echo __('Field Id'); ?></th>
+		<th><?php echo __('Bestseller'); ?></th>
 		<th><?php echo __('Price'); ?></th>
 		<th><?php echo __('Page'); ?></th>
 		<th><?php echo __('Isbn'); ?></th>
 		<th><?php echo __('Summary'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
+		<th><?php echo __('Created Time'); ?></th>
+		<th><?php echo __('Modified Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($publisher['Book'] as $book): ?>
@@ -59,12 +61,14 @@
 			<td><?php echo $book['author_id']; ?></td>
 			<td><?php echo $book['publisher_id']; ?></td>
 			<td><?php echo $book['published']; ?></td>
+			<td><?php echo $book['field_id']; ?></td>
+			<td><?php echo $book['bestseller']; ?></td>
 			<td><?php echo $book['price']; ?></td>
 			<td><?php echo $book['page']; ?></td>
 			<td><?php echo $book['isbn']; ?></td>
 			<td><?php echo $book['summary']; ?></td>
-			<td><?php echo $book['created']; ?></td>
-			<td><?php echo $book['modified']; ?></td>
+			<td><?php echo $book['created_time']; ?></td>
+			<td><?php echo $book['modified_time']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'books', 'action' => 'view', $book['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'books', 'action' => 'edit', $book['id'])); ?>

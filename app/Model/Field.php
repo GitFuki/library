@@ -1,11 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Publisher Model
+ * Field Model
  *
  * @property Book $Book
  */
-class Publisher extends AppModel {
+class Field extends AppModel {
 
 /**
  * Display field
@@ -20,6 +20,16 @@ class Publisher extends AppModel {
  * @var array
  */
 	public $validate = array(
+		'name' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'created_time' => array(
 			'datetime' => array(
 				'rule' => array('datetime'),
@@ -40,16 +50,6 @@ class Publisher extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'name' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -62,7 +62,7 @@ class Publisher extends AppModel {
 	public $hasMany = array(
 		'Book' => array(
 			'className' => 'Book',
-			'foreignKey' => 'publisher_id',
+			'foreignKey' => 'field_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

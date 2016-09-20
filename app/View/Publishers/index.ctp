@@ -4,8 +4,8 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -14,8 +14,8 @@
 	<?php foreach ($publishers as $publisher): ?>
 	<tr>
 		<td><?php echo h($publisher['Publisher']['id']); ?>&nbsp;</td>
-		<td><?php echo h($publisher['Publisher']['created']); ?>&nbsp;</td>
-		<td><?php echo h($publisher['Publisher']['modified']); ?>&nbsp;</td>
+		<td><?php echo h($publisher['Publisher']['created_time']); ?>&nbsp;</td>
+		<td><?php echo h($publisher['Publisher']['modified_time']); ?>&nbsp;</td>
 		<td><?php echo h($publisher['Publisher']['name']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $publisher['Publisher']['id'])); ?>

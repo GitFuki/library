@@ -1,69 +1,49 @@
-<div class="books view">
-<h2><?php echo __('Book'); ?></h2>
+<div class="users view">
+<h2><?php echo __('User'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['id']); ?>
+			<?php echo h($user['User']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Name'); ?></dt>
+		<dt><?php echo __('Last Name'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['name']); ?>
+			<?php echo h($user['User']['last_name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Author'); ?></dt>
+		<dt><?php echo __('First Name'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($book['Author']['name'], array('controller' => 'authors', 'action' => 'view', $book['Author']['id'])); ?>
+			<?php echo h($user['User']['first_name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Publisher'); ?></dt>
+		<dt><?php echo __('Tel'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($book['Publisher']['name'], array('controller' => 'publishers', 'action' => 'view', $book['Publisher']['id'])); ?>
+			<?php echo h($user['User']['tel']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Published'); ?></dt>
+		<dt><?php echo __('Birthday'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['published']); ?>
+			<?php echo h($user['User']['birthday']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Field'); ?></dt>
+		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($book['Field']['name'], array('controller' => 'fields', 'action' => 'view', $book['Field']['id'])); ?>
+			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Bestseller'); ?></dt>
+		<dt><?php echo __('Password'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['bestseller']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Price'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['price']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Page'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['page']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Isbn'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['isbn']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Summary'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['summary']); ?>
+			<?php echo h($user['User']['password']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created Time'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['created_time']); ?>
+			<?php echo h($user['User']['created_time']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified Time'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['modified_time']); ?>
+			<?php echo h($user['User']['modified_time']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -71,16 +51,10 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Book'), array('action' => 'edit', $book['Book']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Book'), array('action' => 'delete', $book['Book']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['Book']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Book'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Authors'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Author'), array('controller' => 'authors', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Publishers'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Publisher'), array('controller' => 'publishers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Fields'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Field'), array('controller' => 'fields', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Bookinglists'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Borrowinglists'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
@@ -89,7 +63,7 @@
 </div>
 <div class="related">
 	<h3><?php echo __('Related Bookinglists'); ?></h3>
-	<?php if (!empty($book['Bookinglist'])): ?>
+	<?php if (!empty($user['Bookinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
@@ -101,7 +75,7 @@
 		<th><?php echo __('Modified Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($book['Bookinglist'] as $bookinglist): ?>
+	<?php foreach ($user['Bookinglist'] as $bookinglist): ?>
 		<tr>
 			<td><?php echo $bookinglist['id']; ?></td>
 			<td><?php echo $bookinglist['book_id']; ?></td>
@@ -128,7 +102,7 @@
 </div>
 <div class="related">
 	<h3><?php echo __('Related Borrowinglists'); ?></h3>
-	<?php if (!empty($book['Borrowinglist'])): ?>
+	<?php if (!empty($user['Borrowinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
@@ -140,7 +114,7 @@
 		<th><?php echo __('Modified Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($book['Borrowinglist'] as $borrowinglist): ?>
+	<?php foreach ($user['Borrowinglist'] as $borrowinglist): ?>
 		<tr>
 			<td><?php echo $borrowinglist['id']; ?></td>
 			<td><?php echo $borrowinglist['book_id']; ?></td>

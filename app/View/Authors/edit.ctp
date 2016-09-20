@@ -4,6 +4,8 @@
 		<legend><?php echo __('Edit Author'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+		echo $this->Form->input('created_time');
+		echo $this->Form->input('modified_time');
 		echo $this->Form->input('name');
 	?>
 	</fieldset>

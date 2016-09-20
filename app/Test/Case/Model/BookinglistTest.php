@@ -1,10 +1,10 @@
 <?php
-App::uses('Publisher', 'Model');
+App::uses('Bookinglist', 'Model');
 
 /**
- * Publisher Test Case
+ * Bookinglist Test Case
  */
-class PublisherTest extends CakeTestCase {
+class BookinglistTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -12,13 +12,9 @@ class PublisherTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.publisher',
-		'app.book',
-		'app.author',
-		'app.field',
 		'app.bookinglist',
-		'app.user',
-		'app.borrowinglist'
+		'app.book',
+		'app.user'
 	);
 
 /**
@@ -28,7 +24,7 @@ class PublisherTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Publisher = ClassRegistry::init('Publisher');
+		$this->Bookinglist = ClassRegistry::init('Bookinglist');
 	}
 
 /**
@@ -37,7 +33,7 @@ class PublisherTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Publisher);
+		unset($this->Bookinglist);
 
 		parent::tearDown();
 	}

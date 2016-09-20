@@ -14,7 +14,11 @@ class BookTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.book',
 		'app.author',
-		'app.publisher'
+		'app.publisher',
+		'app.field',
+		'app.bookinglist',
+		'app.user',
+		'app.borrowinglist'
 	);
 
 /**

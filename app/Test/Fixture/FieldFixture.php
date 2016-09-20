@@ -1,8 +1,8 @@
 <?php
 /**
- * Author Fixture
+ * Field Fixture
  */
-class AuthorFixture extends CakeTestFixture {
+class FieldFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -10,10 +10,10 @@ class AuthorFixture extends CakeTestFixture {
  * @var array
  */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => true, 'key' => 'primary'),
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 20, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'created_time' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'modified_time' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -28,9 +28,9 @@ class AuthorFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'created_time' => '2016-09-20 02:16:01',
-			'modified_time' => '2016-09-20 02:16:01',
-			'name' => 'Lorem ipsum dolor sit amet'
+			'name' => 'Lorem ipsum dolor ',
+			'created_time' => '2016-09-20 02:24:16',
+			'modified_time' => '2016-09-20 02:24:16'
 		),
 	);
 
