@@ -74,6 +74,7 @@ class User extends AppModel {
         'username' => array(
             'notBlank' => array(
                 'rule' => array('notBlank'),
+                'message' => 'A username is required'
                 //'message' => 'Your custom message here',
                 //'allowEmpty' => false,
                 //'required' => false,
@@ -84,6 +85,7 @@ class User extends AppModel {
 		'password' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
+                'message' => 'A password is required'
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
