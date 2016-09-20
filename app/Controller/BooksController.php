@@ -16,6 +16,8 @@ class BooksController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session', 'Flash');
+    //
+    public $helpers = array('Paginator');
 
 /**
  * index method
@@ -24,6 +26,14 @@ class BooksController extends AppController {
  */
 	public function index() {
 		$this->Book->recursive = 0;
+        //ページネータをセット
+        $this->Paginator->settings = array(
+            'Book' => array(
+                'paramType' => 'querystring',
+                'limit' => 5,
+                'maxLimit' => 5,
+                'order' => array(
+                    'Book.id' => 'asc')));
 		$this->set('books', $this->Paginator->paginate());
 	}
 
