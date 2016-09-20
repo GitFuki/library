@@ -1,13 +1,25 @@
 <div class="books index">
 	<h2><?php echo __('Books'); ?></h2>
 
-	//add the search box
-	<?php echo $this->Form->create('Book', array('action' =>'search'));
+	<!--add the search box-->
+
+	<?php
+      echo $this->Form->create('Book', array(
+			  'url'   => array(
+				  'controller' => 'books','action' => 'search'
+			  ),
+			  'id'    => 'web-form',
+			  'class' =>'panel-body wrapper-lg'
+		  )
+	  );
+
+ 	/*<?php echo $this->Form->create('Book', array('action' =>'search'));*/
+
 	if(!isset($searchQuery)){
 		$searchQuery ='';
 	}
 	echo $this->Form->input('searchQuery', array('value'=>h($searchQuery)));
-	echo $this->Form->end(__('Search'));
+	echo $this->Form->end(__('search'));
 	?>
 
 

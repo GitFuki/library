@@ -124,8 +124,10 @@ class BooksController extends AppController {
 
 
 
-	//Adding search() action
+	//Adding search() action first detects a POST request and then does a super-quick implementation of the Post/Redirect/Get design pattern.
     public function search(){
+
+        //searching text, for example, "html", will post to the search() action first and then issue a redirect to /books/index?q=html.
         if($this->request->is('put') || $this->request->is('post')){
             return $this->redirect(array(
                 '?' => array(
@@ -135,6 +137,8 @@ class BooksController extends AppController {
         }
             $this->Book->recursive =0;
             $searchQuery = $this->request->query('q');
+
+        //Configure the Book component using the following setting.
             $this->Paginator->settings = array(
                 'Book' => array(
                     'findType' => 'search',
@@ -142,7 +146,7 @@ class BooksController extends AppController {
                 )
             );
             $this->set('books', $this->Paginator->paginate());
-            $this->set('searchquery', $searchQuery);
+            $this->set('searchQuery', $searchQuery);
             $this->render('index');
 
 
