@@ -9,6 +9,7 @@
 		echo $this->Form->input('tel');
 		echo $this->Form->input('birthday');
 		echo $this->Form->input('email');
+        echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('created_time');
 		echo $this->Form->input('modified_time');

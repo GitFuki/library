@@ -9,6 +9,7 @@
 			<th><?php echo $this->Paginator->sort('tel'); ?></th>
 			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
+            <th><?php echo $this->Paginator->sort('username'); ?></th>
 			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
@@ -24,6 +25,7 @@
 		<td><?php echo h($user['User']['tel']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['birthday']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
+        <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified_time']); ?>&nbsp;</td>
