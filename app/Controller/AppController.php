@@ -66,7 +66,7 @@ class AppController extends Controller {
     public function beforeFilter() {
       /*  $this->log("test test test", LOG_ERR);*/
       /*  $this->log(print_r($this->Auth, true), LOG_ERR);*/
-        $this->Auth->allow('index', 'view', 'search');
+  $this->Auth->allow('index', 'view', 'search');
         $this->set('user', $this->Auth->user());
     }
 }
