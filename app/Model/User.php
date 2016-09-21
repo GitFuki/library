@@ -94,6 +94,17 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'role' => array(
+            'notBlank' => array(
+                'rule' => array('inList', array('admin', 'member')),
+                'message' => 'Please enter a valid role',
+                //'message' => 'Your custom message here',
+                'allowEmpty' => false
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
 		'created_time' => array(
 			'datetime' => array(
 				'rule' => array('datetime'),
