@@ -42,6 +42,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<div id="header_menu">
 				<?php
 				if(isset($user)):
+					print("こんにちは ".h($user['username'])."さん<br>");
 					echo $this->Html->link('Logout', '/users/logout');
 				else:
 					echo $this->Html->link('Login', '/users/login'), "<br>";

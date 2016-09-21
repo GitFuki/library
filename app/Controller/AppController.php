@@ -64,10 +64,9 @@ class AppController extends Controller {
     }
     /* setting beforeFilter function to allow index and view action without user login, so that any site visitors can read the entries.*/
     public function beforeFilter() {
-        $this->log("test test test", LOG_ERR);
-        $this->log(print_r($this->Auth, true), LOG_ERR);
+      /*  $this->log("test test test", LOG_ERR);*/
+      /*  $this->log(print_r($this->Auth, true), LOG_ERR);*/
         $this->Auth->allow('index', 'view', 'search');
+        $this->set('user', $this->Auth->user());
     }
-
-
 }

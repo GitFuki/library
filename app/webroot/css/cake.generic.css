@@ -29,7 +29,8 @@ body {
 	margin: 0;
 }
 #header_menu {
-	text-align: right;
+	float: right;
+	padding-bottom: 20px;
 }
 a {
 	color: #003d4c;
