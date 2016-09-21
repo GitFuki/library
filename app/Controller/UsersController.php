@@ -19,7 +19,7 @@ class UsersController extends AppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('add', 'login', 'register', 'logout');
     }
 
     public function login(){
@@ -32,8 +32,19 @@ class UsersController extends AppController {
         }
     }
 
+    public function register(){
+        //$this->requestにPOSTされたデータが入っている
+        //POSTメソッドかつユーザ追加が成功したら
+        if($this->request->is('post') && $this->User->save($this->request->data)){
+            //ログイン
+            //$this->request->dataの値を使用してログインする規約になっている
+            $this->Auth->login();
+            $this->redirect('../books/index');
+        }
+    }
+
     public function logout() {
-        $this->redirect($this->Auth->logout());
+        $this->redirect($this->Auth->login());
     }
 
 /**
