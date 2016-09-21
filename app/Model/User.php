@@ -96,7 +96,7 @@ class User extends AppModel {
 		),
         'role' => array(
             'notBlank' => array(
-                'rule' => array('inList', array('admin', 'member')),
+                'rule' => array('inList', array('admin', 'user')),
                 'message' => 'Please enter a valid role',
                 //'message' => 'Your custom message here',
                 'allowEmpty' => false
