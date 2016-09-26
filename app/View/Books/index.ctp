@@ -48,7 +48,8 @@
 	<?php foreach ($books as $book): ?>
 	<tr>
 		<td><?php echo h($book['Book']['id']); ?>&nbsp;</td>
-		<td><?php echo h($book['Book']['name']); ?>&nbsp;</td>
+<!--		<td>--><?php //echo h($book['Book']['name']);?><!--&nbsp;</td>-->
+			<td><?php echo $this->Html->link($book['Book']['name'], array('controller' => 'books', 'action' => 'view', $book['Book']['id'])); ?></td>
 		<td>
 			<?php echo $this->Html->link($book['Author']['name'], array('controller' => 'authors', 'action' => 'view', $book['Author']['id'])); ?>
 		</td>
