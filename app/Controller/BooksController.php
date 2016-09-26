@@ -29,11 +29,7 @@ class BooksController extends AppController {
 
         $passwordHasher = new BlowfishPasswordHasher();
         //$passwordHasher->hash("1234");
-        print_r($passwordHasher->hash("1234"));
-
-
-
-
+      /*  print_r($passwordHasher->hash("1234"));*/
 
 
 		$this->Book->recursive = 0;
@@ -140,20 +136,35 @@ class BooksController extends AppController {
 
         //searching text, for example, "html", will post to the search() action first and then issue a redirect to /books/index?q=html.
         if($this->request->is('put') || $this->request->is('post')){
+if(isset($this->request->data['Book']['searchByTitle'])){
+    $query = $this->request->data['Book']['searchByTitle'];
+    $type = 't';
+} elseif(isset($this->request->data['Book']['searchByAuthor'])){
+    $query = $this->request->data['Book']['searchByAuthor'];
+    $type = 'a';
+} elseif(isset($this->request->data['Book']['searchByIsbn'])){
+    $query = $this->request->data['Book']['searchByIsbn'];
+    $type = 'i';
+}
+
             return $this->redirect(array(
                 '?' => array(
-                    'q' =>$this->request->data('Book.searchQuery')
+                    'q' =>$query,
+                    't' =>$type
                 )
                 ));
         }
             $this->Book->recursive =0;
             $searchQuery = $this->request->query('q');
+            $searchType = $this->request->query('t');
+        $this->log($searchQuery);
 
         //Configure the Book component using the following setting.
             $this->Paginator->settings = array(
                 'Book' => array(
                     'findType' => 'search',
-                    'searchQuery' => $searchQuery
+                    'searchQuery' => $searchQuery,
+                    'searchType' => $searchType
                 )
             );
             $this->set('books', $this->Paginator->paginate());

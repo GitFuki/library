@@ -18,11 +18,47 @@
 	if(!isset($searchQuery)){
 		$searchQuery ='';
 	}
-	echo $this->Form->input('searchQuery', array('value'=>h($searchQuery)));
+	echo $this->Form->input('searchByTitle', array('value'=>h($searchQuery)));
 	echo $this->Form->end(__('search'));
 	?>
 
+    <?php
+    echo $this->Form->create('Book', array(
+            'url'   => array(
+                'controller' => 'books','action' => 'search'
+            ),
+            'id'    => 'web-author',
+            'class' =>'panel-body wrapper-lg'
+        )
+    );
 
+    /*<?php echo $this->Form->create('Book', array('action' =>'search'));*/
+
+    if(!isset($searchQuery)){
+        $searchQuery ='';
+    }
+    echo $this->Form->input('searchByAuthor', array('value'=>h($searchQuery)));
+    echo $this->Form->end(__('search'));
+    ?>
+
+    <?php
+    echo $this->Form->create('Book', array(
+            'url'   => array(
+                'controller' => 'books','action' => 'search'
+            ),
+            'id'    => 'web-isbn',
+            'class' =>'panel-body wrapper-lg'
+        )
+    );
+
+    /*<?php echo $this->Form->create('Book', array('action' =>'search'));*/
+
+    if(!isset($searchQuery)){
+        $searchQuery ='';
+    }
+    echo $this->Form->input('searchByIsbn', array('value'=>h($searchQuery)));
+    echo $this->Form->end(__('search'));
+    ?>
 
 
 	<table cellpadding="0" cellspacing="0">
