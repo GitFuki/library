@@ -19,7 +19,7 @@
         <dt><?php echo __('Book cover'); ?></dt>
         <dd>
 <?php $base = $this->Html->url( '/files/book/photo/');
-        echo $this->Html->image($base.$book['Book']['photo_dir'].'/' . $book['Book']['photo']);
+        echo $this->Html->image($base.$book['Book']['photo_dir'].'/' . $book['Book']['photo'], array('class' => 'book-icon', 'alt' => $book['Book']['name']));
             // $this->Html->image( $base . $book['photo_dir'] . '/' . $book['photo'] );
 ?>
             &nbsp;
@@ -31,7 +31,7 @@
 		</dd>
 		<dt><?php echo __('Published'); ?></dt>
 		<dd>
-			<?php echo h($book['Book']['published']); ?>
+			<?php echo h(date('Y-m', strtotime($book['Book']['published']))); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Field'); ?></dt>

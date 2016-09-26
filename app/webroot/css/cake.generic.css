@@ -261,6 +261,7 @@ dd {
 	vertical-align: top;
 }
 
+
 /** Forms **/
 form {
 	clear: both;
@@ -744,4 +745,9 @@ pre {
 /** Elements **/
 #url-rewriting-warning {
 	display:none;
+}
+
+.book-icon {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
