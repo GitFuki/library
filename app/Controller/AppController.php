@@ -36,6 +36,7 @@ class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar',
         'Flash',
+        'Acl',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'books',
@@ -51,8 +52,11 @@ class AppController extends Controller {
                     'passwordHasher' => 'Blowfish')
             ),
             'authorize' => array('Controller')
-        )
+        ),
+        'Session'
     );
+
+    public $helpers = array('Html', 'Form', 'Session');
 
     public function isAuthorized($user) {
         // Admin can access every action
@@ -68,5 +72,21 @@ class AppController extends Controller {
       /*  $this->log(print_r($this->Auth, true), LOG_ERR);*/
   $this->Auth->allow('index', 'view', 'search');
         $this->set('user', $this->Auth->user());
+
+        // AuthComponent の設定
+        $this->Auth->loginAction = array(
+            'controller' => 'users',
+            'action' => 'login'
+        );
+        $this->Auth->logoutRedirect = array(
+            'controller' => 'users',
+            'action' => 'login'
+        );
+        $this->Auth->loginRedirect = array(
+            'controller' => 'books',
+            'action' => 'index'
+        );
+
+
     }
 }
