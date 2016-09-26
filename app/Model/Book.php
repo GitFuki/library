@@ -144,6 +144,10 @@ class Book extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'photo' => array(
+            'rule' => 'isUnderPhpSizeLimit',
+            'message' => 'File exceeds upload filesize limit'
+        )
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -228,15 +232,13 @@ public $findMethods = array('search' => true);
         return $results;
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public $actsAs = array(
+        'Upload.Upload' => array(
+            'photo' => array(
+                'fields' => array(
+                    'dir' => 'photo_dir'
+                )
+            )
+        )
+    );
 }

@@ -16,6 +16,14 @@
 			<?php echo $this->Html->link($book['Author']['name'], array('controller' => 'authors', 'action' => 'view', $book['Author']['id'])); ?>
 			&nbsp;
 		</dd>
+        <dt><?php echo __('Book cover'); ?></dt>
+        <dd>
+<?php $base = $this->Html->url( '/files/book/photo/');
+        echo $this->Html->image($base.$book['Book']['photo_dir'].'/' . $book['Book']['photo']);
+            // $this->Html->image( $base . $book['photo_dir'] . '/' . $book['photo'] );
+?>
+            &nbsp;
+        </dd>
 		<dt><?php echo __('Publisher'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($book['Publisher']['name'], array('controller' => 'publishers', 'action' => 'view', $book['Publisher']['id'])); ?>
