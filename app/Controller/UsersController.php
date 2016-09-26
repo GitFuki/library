@@ -19,8 +19,31 @@ class UsersController extends AppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-//        $this->Auth->allow('add', 'login', 'register', 'logout');
-        $this->Auth->allow();
+        $this->Auth->allow('index', 'view', 'login', 'logout');
+//        $this->Auth->allow();
+//        $this->Auth->allow('initDB');
+    }
+
+    public function initDB() {
+        $group = $this->User->Group;
+        //管理者グループには全てを許可する
+        $group->id = 1;
+        $this->Acl->allow($group, 'controllers');
+
+        //マネージャグループには 下記 に対するアクセスを許可する
+        $group->id = 2;
+        $this->Acl->deny($group, 'controllers');
+        $this->Acl->allow($group, 'controllers/Books');
+        $this->Acl->allow($group, 'controllers/Publishers');
+        $this->Acl->allow($group, 'controllers/Borrowinglists');
+        $this->Acl->allow($group, 'controllers/Bookinglists');
+
+        //ユーザグループには何も追加と編集を許可しない
+        $group->id = 3;
+        $this->Acl->deny($group, 'controllers');
+        //馬鹿げた「ビューが見つからない」というエラーメッセージを表示させないために exit を追加します
+        echo "all done";
+        exit;
     }
 
     public function login(){
@@ -45,8 +68,10 @@ class UsersController extends AppController {
     }
 
     public function logout() {
-        $this->Auth->logout();
-        $this->redirect('login');
+//        $this->Auth->logout();
+//        $this->redirect('login');
+        $this->Flash->set('Good-Bye');
+        $this->redirect($this->Auth->logout());
     }
 
 /**
