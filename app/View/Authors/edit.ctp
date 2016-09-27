@@ -1,13 +1,17 @@
 <div class="authors form">
-<?php echo $this->Form->create('Author'); ?>
+<?php echo $this->Form->create('Author', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Author'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
 		echo $this->Form->input('name');
+        echo $this->Form->input('photo', array(
+        'type' => 'file',
+        'label'=> 'プロフィール画像'));
+        echo $this->Form->input('photo_dir', array('type' => 'hidden'));
 		echo $this->Form->input('detail');
+        echo $this->Form->input('created_time');
+        echo $this->Form->input('modified_time');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -17,6 +17,7 @@ class AuthorsController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
 
+    public $helpers = array('Paginator', 'Form');
 /**
  * index method
  *

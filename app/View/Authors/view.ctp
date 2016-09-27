@@ -1,5 +1,5 @@
 <div class="authors view">
-<h2><?php echo __('Author'); ?></h2>
+<h2><?php echo __($author['Author']['name'].'の紹介'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -11,6 +11,12 @@
 			<?php echo h($author['Author']['name']); ?>
 			&nbsp;
 		</dd>
+        <dt><?php echo __('プロフィール画像'); ?></dt>
+        <dd>
+            <?php $base = $this->Html->url( '/../files/author/photo/');
+            echo $this->Html->image($base.$author['Author']['photo_dir'].'/' . $author['Author']['photo'], array('class' => 'author-icon', 'alt' => $author['Author']['name']));
+            ?>
+        </dd>
 		<dt><?php echo __('著者紹介'); ?></dt>
 		<dd>
 			<?php echo h($author['Author']['detail']); ?>
@@ -40,7 +46,7 @@
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Books'); ?></h3>
+	<h3><?php echo __('著書一覧'); ?></h3>
 	<?php if (!empty($author['Book'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
