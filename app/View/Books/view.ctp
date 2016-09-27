@@ -18,11 +18,9 @@
 		</dd>
         <dt><?php echo __('Book cover'); ?></dt>
         <dd>
-<?php $base = $this->Html->url( '/files/book/photo/');
+<?php $base = $this->Html->url( '/../files/book/photo/');
         echo $this->Html->image($base.$book['Book']['photo_dir'].'/' . $book['Book']['photo'], array('class' => 'book-icon', 'alt' => $book['Book']['name']));
-            // $this->Html->image( $base . $book['photo_dir'] . '/' . $book['photo'] );
 ?>
-            &nbsp;
         </dd>
 		<dt><?php echo __('Publisher'); ?></dt>
 		<dd>

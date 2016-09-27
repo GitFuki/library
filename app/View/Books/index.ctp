@@ -92,11 +92,11 @@
 		<td>
 			<?php echo $this->Html->link($book['Publisher']['name'], array('controller' => 'publishers', 'action' => 'view', $book['Publisher']['id'])); ?>
 		</td>
-		<td><?php echo h($book['Book']['published']); ?>&nbsp;</td>
+		<td><?php echo h(date('Y-m', strtotime($book['Book']['published']))); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($book['Field']['name'], array('controller' => 'fields', 'action' => 'view', $book['Field']['id'])); ?>
 		</td>
-		<td><?php echo h($book['Book']['bestseller']); ?>&nbsp;</td>
+		<td><?php echo h($book['Book']['bestseller']); ?></td>
 		<td><?php echo h($book['Book']['price']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['page']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['isbn']); ?>&nbsp;</td>
