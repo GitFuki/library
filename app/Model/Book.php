@@ -266,8 +266,4 @@ public $findMethods = array('search' => true);
             )
         )
     );
-
-
-
-
 }

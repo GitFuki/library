@@ -1,5 +1,5 @@
 <div class="books index">
-	<h2><?php echo __('Books'); ?></h2>
+	<h2><?php echo __('本を探す'); ?></h2>
 
 	<!--add the search box-->
 
@@ -9,7 +9,7 @@
 				  'controller' => 'books','action' => 'search'
 			  ),
 			  'id'    => 'web-form',
-			  'class' =>'panel-body wrapper-lg'
+			  'class' =>'panel-body wrapper-lg form-left'
 		  )
 	  );
 
@@ -18,7 +18,25 @@
 	if(!isset($searchQuery)){
 		$searchQuery ='';
 	}
-	echo $this->Form->input('searchByTitle', array('value'=>h($searchQuery)));
+
+    $searchByTitle ='';
+    $searchByAuthor ='';
+    $searchByIsbn ='';
+
+    if(isset($searchType) && ($searchType == 't')){
+        $searchByTitle = $searchQuery;
+    }
+
+    if(isset($searchType) && ($searchType == 'a')){
+        $searchByAuthor = $searchQuery;
+    }
+
+    if(isset($searchType) && ($searchType == 'i')){
+        $searchByIsbn = $searchQuery;
+    }
+
+
+	echo $this->Form->input('searchByTitle', array('value'=>h($searchByTitle), 'label'=>'タイトルで探す'));
 	echo $this->Form->end(__('search'));
 	?>
 
@@ -28,16 +46,15 @@
                 'controller' => 'books','action' => 'search'
             ),
             'id'    => 'web-author',
-            'class' =>'panel-body wrapper-lg'
+            'class' =>'panel-body wrapper-lg form-left'
         )
     );
 
     /*<?php echo $this->Form->create('Book', array('action' =>'search'));*/
 
-    if(!isset($searchQuery)){
-        $searchQuery ='';
-    }
-    echo $this->Form->input('searchByAuthor', array('value'=>h($searchQuery)));
+
+
+    echo $this->Form->input('searchByAuthor', array('value'=>h($searchByAuthor), 'label'=>'筆者名で探す'));
     echo $this->Form->end(__('search'));
     ?>
 
@@ -47,20 +64,23 @@
                 'controller' => 'books','action' => 'search'
             ),
             'id'    => 'web-isbn',
-            'class' =>'panel-body wrapper-lg'
+            'class' =>'panel-body wrapper-lg form-left'
         )
     );
 
     /*<?php echo $this->Form->create('Book', array('action' =>'search'));*/
 
-    if(!isset($searchQuery)){
-        $searchQuery ='';
-    }
-    echo $this->Form->input('searchByIsbn', array('value'=>h($searchQuery)));
+
+    echo $this->Form->input('searchByIsbn', array('value'=>h($searchByIsbn), 'label'=>'ISBNで探す'));
     echo $this->Form->end(__('search'));
     ?>
-
-
+    <hr style="clear:both; margin:200px 0 20px 0">
+    <h3><?php
+        if((isset($searchQuery)) && !empty($searchQuery)){
+            echo __('「' . $searchQuery . '」の検索結果');
+        } else {
+            echo __('書籍一覧');
+        }?></h3>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

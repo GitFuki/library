@@ -1,6 +1,8 @@
 <?php
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 App::uses('AppController', 'Controller');
+App::uses('Borrowinglist', 'Model');
+
 /**
  * Books Controller
  *
@@ -56,8 +58,24 @@ class BooksController extends AppController {
 			throw new NotFoundException(__('Invalid book'));
 		}
 		$options = array('conditions' => array('Book.' . $this->Book->primaryKey => $id));
+
 		$this->set('book', $this->Book->find('first', $options));
-	}
+
+        $Borrowinglist = new Borrowinglist();
+        $result = $Borrowinglist->find('first', array(
+            'conditions' => array('Borrowinglist.book_id' => $id)
+        ));
+
+        echo "<pre>";
+        print_r($result);
+        print_r($result['Borrowinglist']['user_id']);
+        if($this->set()){
+
+        }
+        echo "</pre>";
+
+
+    }
 
 /**
  * add method
@@ -135,17 +153,17 @@ class BooksController extends AppController {
     public function search(){
 
         //searching text, for example, "html", will post to the search() action first and then issue a redirect to /books/index?q=html.
-        if($this->request->is('put') || $this->request->is('post')){
-if(isset($this->request->data['Book']['searchByTitle'])){
-    $query = $this->request->data['Book']['searchByTitle'];
-    $type = 't';
-} elseif(isset($this->request->data['Book']['searchByAuthor'])){
-    $query = $this->request->data['Book']['searchByAuthor'];
-    $type = 'a';
-} elseif(isset($this->request->data['Book']['searchByIsbn'])){
-    $query = $this->request->data['Book']['searchByIsbn'];
-    $type = 'i';
-}
+        if ($this->request->is('put') || $this->request->is('post')) {
+            if (isset($this->request->data['Book']['searchByTitle'])) {
+                $query = $this->request->data['Book']['searchByTitle'];
+                $type = 't';
+            } elseif (isset($this->request->data['Book']['searchByAuthor'])) {
+                $query = $this->request->data['Book']['searchByAuthor'];
+                $type = 'a';
+            } elseif (isset($this->request->data['Book']['searchByIsbn'])) {
+                $query = $this->request->data['Book']['searchByIsbn'];
+                $type = 'i';
+            }
 
             return $this->redirect(array(
                 '?' => array(
@@ -169,6 +187,7 @@ if(isset($this->request->data['Book']['searchByTitle'])){
             );
             $this->set('books', $this->Paginator->paginate());
             $this->set('searchQuery', $searchQuery);
+            $this->set('searchType', $searchType);
             $this->render('index');
 
 

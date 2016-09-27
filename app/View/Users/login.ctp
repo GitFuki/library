@@ -10,5 +10,6 @@
         ?>
     </fieldset>
     <?php echo $this->Form->end(__('Login')); ?>
+    <hr style="clear:both; margin:200px 0 20px 0">
     <?php echo "New user? ", $this->Html->link(__('Resister here'), array('action' => 'add')); ?></p>
 </div>
