@@ -1,5 +1,5 @@
 <div class="books view">
-<h2><?php echo __('Book'); ?></h2>
+<h2><?php echo __('「'.$book['Book']['name'].'」の詳細情報'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -73,6 +73,13 @@
 			&nbsp;
 		</dd>
 	</dl>
+	<div class="booking-outerbox">
+		<div class="booking-innerbox">
+		<h3><?php echo __('この図書を予約する'); ?></h3>
+
+			</div>
+	</div>
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

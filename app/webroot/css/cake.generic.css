@@ -612,7 +612,7 @@ pre {
 	white-space: normal;
 }
 .cake-stack-trace {
-	background: rgba(255, 255, 255, 0.7);
+	background: rgba(218, 243, 255, 0.7);
 	color: #333;
 	margin: 10px 0 5px 0;
 	padding: 10px 10px 0 10px;
@@ -750,4 +750,14 @@ pre {
 .book-icon {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.booking-outerbox {
+	width: 60%;
+	padding: 10px 0 10px 0;
+	margin: 50px 0 10px 0;
+	background-color: #DAF3FF;
+}
+.booking-innerbox {
+	margin: 10px;
 }
