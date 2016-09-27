@@ -67,6 +67,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('author_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('Book cover'); ?></th>
 			<th><?php echo $this->Paginator->sort('publisher_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('published'); ?></th>
 			<th><?php echo $this->Paginator->sort('field_id'); ?></th>
@@ -84,11 +85,13 @@
 	<?php foreach ($books as $book): ?>
 	<tr>
 		<td><?php echo h($book['Book']['id']); ?>&nbsp;</td>
-<!--		<td>--><?php //echo h($book['Book']['name']);?><!--&nbsp;</td>-->
-			<td><?php echo $this->Html->link($book['Book']['name'], array('controller' => 'books', 'action' => 'view', $book['Book']['id'])); ?></td>
+		<td><?php echo $this->Html->link($book['Book']['name'], array('controller' => 'books', 'action' => 'view', $book['Book']['id'])); ?></td>
 		<td>
 			<?php echo $this->Html->link($book['Author']['name'], array('controller' => 'authors', 'action' => 'view', $book['Author']['id'])); ?>
 		</td>
+		<td><?php $base = $this->Html->url( '/../files/book/photo/');
+			echo $this->Html->image($base.$book['Book']['photo_dir'].'/' . $book['Book']['photo'], array('class' => 'book-icon', 'alt' => $book['Book']['name'], 'width' => '));
+			?></td>
 		<td>
 			<?php echo $this->Html->link($book['Publisher']['name'], array('controller' => 'publishers', 'action' => 'view', $book['Publisher']['id'])); ?>
 		</td>

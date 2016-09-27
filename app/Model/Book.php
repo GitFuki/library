@@ -263,8 +263,11 @@ public $findMethods = array('search' => true);
                 'fields' => array(
                     'dir' => 'photo_dir'
                 ),
-
             )
         )
     );
+
+
+
+
 }

@@ -8,6 +8,7 @@
 		echo $this->Form->input('author_id');
     echo $this->Form->input('photo', array('type' => 'file'));
     echo $this->Form->input('photo_dir', array('type' => 'hidden'));
+
 		echo $this->Form->input('publisher_id');
 		echo $this->Form->input('published');
 		echo $this->Form->input('field_id');

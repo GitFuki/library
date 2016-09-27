@@ -76,7 +76,14 @@
 	<div class="booking-outerbox">
 		<div class="booking-innerbox">
 		<h3><?php echo __('この図書を予約する'); ?></h3>
-
+			<?php /*foreach ($book['Bookinglist'] as $bookinglist): */?><!--
+				<?php
+/*				$booking_id = $this->
+				if ($book['Book']['id'] = $book['Bookinglist']['book_id']) {
+				echo 'sdkljfa';
+				}
+	*/?>
+			--><?php /*endforeach; */?>
 			</div>
 	</div>
 
