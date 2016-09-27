@@ -6,19 +6,24 @@
 			<?php echo h($author['Author']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('著者名'); ?></dt>
+		<dd>
+			<?php echo h($author['Author']['name']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('著者紹介'); ?></dt>
+		<dd>
+			<?php echo h($author['Author']['detail']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($author['Author']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('更新日時'); ?></dt>
 		<dd>
 			<?php echo h($author['Author']['modified_time']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($author['Author']['name']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -42,6 +47,7 @@
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Name'); ?></th>
 		<th><?php echo __('Author Id'); ?></th>
+		<th><?php echo __('Book cover'); ?></th>
 		<th><?php echo __('Publisher Id'); ?></th>
 		<th><?php echo __('Published'); ?></th>
 		<th><?php echo __('Field Id'); ?></th>
@@ -59,6 +65,9 @@
 			<td><?php echo $book['id']; ?></td>
 			<td><?php echo $book['name']; ?></td>
 			<td><?php echo $book['author_id']; ?></td>
+			<td><?php $base = $this->Html->url( '/../files/book/photo/');
+				echo $this->Html->image($base.$book['photo_dir'].'/' . $book['photo'], array('class' => 'book-icon', 'alt' => $book['name'], 'width' => '100px'));
+				?></td>
 			<td><?php echo $book['publisher_id']; ?></td>
 			<td><?php echo $book['published']; ?></td>
 			<td><?php echo $book['field_id']; ?></td>

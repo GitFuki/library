@@ -7,6 +7,7 @@
 		echo $this->Form->input('created_time');
 		echo $this->Form->input('modified_time');
 		echo $this->Form->input('name');
+		echo $this->Form->input('detail');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

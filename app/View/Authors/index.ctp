@@ -7,6 +7,7 @@
 			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('detail'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -17,6 +18,7 @@
 		<td><?php echo h($author['Author']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($author['Author']['modified_time']); ?>&nbsp;</td>
 		<td><?php echo h($author['Author']['name']); ?>&nbsp;</td>
+		<td><?php echo h($author['Author']['detail']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $author['Author']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $author['Author']['id'])); ?>

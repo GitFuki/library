@@ -3,20 +3,47 @@
 	<fieldset>
 		<legend><?php echo __('Add Book'); ?></legend>
 	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('author_id');
-        echo $this->Form->input('photo', array('type' => 'file'));
+		echo $this->Form->input('name', array(
+			'label'=> 'タイトル'));
+		echo $this->Form->input('author_id', array(
+			'label'=> '著者'));
+        echo $this->Form->input('photo', array(
+        	'type' => 'file',
+			'label'=> '表紙画像'));
         echo $this->Form->input('photo_dir', array('type' => 'hidden'));
-		echo $this->Form->input('publisher_id');
-		echo $this->Form->input('published');
-		echo $this->Form->input('field_id');
-		echo $this->Form->input('bestseller');
-		echo $this->Form->input('price');
-		echo $this->Form->input('page');
+		echo $this->Form->input('publisher_id', array(
+			'label'=> '出版社'));
+		echo $this->Form->input('published', array(
+			'label'=> '出版年月'));
+		echo $this->Form->input('field_id', array(
+			'label'=> '種別'));
+		echo $this->Form->input('bestseller', array(
+			'label'=> 'ベストセラー'));
+		echo $this->Form->input('price', array(
+			'label'=> '価格'));
+		echo $this->Form->input('page', array(
+			'label'=> 'ページ数'));
 		echo $this->Form->input('isbn');
-		echo $this->Form->input('summary');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+		echo $this->Form->input('summary', array(
+			'label'=> 'サマリー'));
+		echo $this->Form->input('created_time', array(
+			'label'=> '作成日時',
+			'type'=>'datetime',
+			'dateFormat'=> 'YMD',
+			'monthNames' => false,
+			'maxYear' => date('Y') + 10,
+			'minYear' => date('Y') - 10,
+			'default' => time()
+		));
+		echo $this->Form->input('modified_time', array(
+			'label'=> '作成日時',
+			'type'=>'datetime',
+			'dateFormat'=> 'YMD',
+			'monthNames' => false,
+			'maxYear' => date('Y') + 10,
+			'minYear' => date('Y') - 1,
+			'default' => time()
+		));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
