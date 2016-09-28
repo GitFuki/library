@@ -37,7 +37,7 @@
 
 
 	echo $this->Form->input('searchByTitle', array('value'=>h($searchByTitle), 'label'=>'タイトルで探す'));
-	echo $this->Form->end(__('search'));
+	echo $this->Form->end(__('検索'));
 	?>
 
     <?php
@@ -55,7 +55,7 @@
 
 
     echo $this->Form->input('searchByAuthor', array('value'=>h($searchByAuthor), 'label'=>'筆者名で探す'));
-    echo $this->Form->end(__('search'));
+    echo $this->Form->end(__('検索'));
     ?>
 
     <?php
@@ -72,7 +72,7 @@
 
 
     echo $this->Form->input('searchByIsbn', array('value'=>h($searchByIsbn), 'label'=>'ISBNで探す'));
-    echo $this->Form->end(__('search'));
+    echo $this->Form->end(__('検索'));
     ?>
     <hr style="clear:both; margin:200px 0 20px 0">
     <h3><?php

@@ -89,7 +89,7 @@ echo "</pre>";
 	</dl>
 	<div class="booking-outerbox">
 		<div class="booking-innerbox">
-		<h3><?php echo __('この図書の貸し出し状況'); ?></h3>
+			<h3><?php echo __('この図書の貸し出し状況'); ?></h3>
 			<?php
 			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
@@ -98,7 +98,18 @@ echo "</pre>";
 			} else {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
 			} ?>
-			</div>
+		</div>
+		<div class="booking-innerbox">
+			<h3><?php echo __('この図書の予約状況'); ?></h3>
+			<?php
+			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
+				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
+				echo __('返却予定は、' . $result['Borrowinglist']['return_time']
+					. 'ですので、それ以降、貸し出し可能です。');
+			} else {
+				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
+			} ?>
+		</div>
 	</div>
 
 </div>
@@ -122,7 +133,7 @@ echo "</pre>";
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Bookinglists'); ?></h3>
+	<h3><?php echo __('予約リスト一覧'); ?></h3>
 	<?php if (!empty($book['Bookinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -156,12 +167,12 @@ echo "</pre>";
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('予約の追加'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Borrowinglists'); ?></h3>
+	<h3><?php echo __('貸出リスト一覧'); ?></h3>
 	<?php if (!empty($book['Borrowinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -195,7 +206,7 @@ echo "</pre>";
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Borrowinglist'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('貸し出しの追加'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
