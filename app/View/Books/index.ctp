@@ -96,9 +96,11 @@
 			<th><?php echo $this->Paginator->sort('page'); ?></th>
 			<th><?php echo $this->Paginator->sort('isbn'); ?></th>
 			<th><?php echo $this->Paginator->sort('summary'); ?></th>
+            <?php if ($user['Group']['name'] == 'administrators'): ?>
 			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
+            <?php endif; ?>
 	</tr>
 	</thead>
 	<tbody>
@@ -124,6 +126,7 @@
 		<td><?php echo h($book['Book']['page']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['isbn']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['summary']); ?>&nbsp;</td>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
 		<td><?php echo h($book['Book']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
@@ -131,6 +134,7 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $book['Book']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $book['Book']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['Book']['id']))); ?>
 		</td>
+        <?php endif; ?>
 	</tr>
 <?php endforeach; ?>
 	</tbody>
@@ -157,18 +161,18 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Book'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Authors'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Author'), array('controller' => 'authors', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Publishers'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Publisher'), array('controller' => 'publishers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Fields'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Field'), array('controller' => 'fields', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Bookinglists'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Borrowinglists'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Borrowinglist'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
-	</ul>
+    <h3><?php echo __('メニュー'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('著者一覧'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('貸出中リスト'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('予約リスト'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
+            <li><?php echo $this->Html->link(__('出版社一覧'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('図書種別一覧'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('ユーザー一覧'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('権限グループ一覧'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+            <hr style="clear:both; margin:20px 0 20px 0">
+            <li><?php echo $this->Html->link(__('本を追加する'), array('controller' => 'books', 'action' => 'add')); ?> </li>
+        <?php endif; ?>
+    </ul>
 </div>

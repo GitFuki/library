@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -72,7 +73,7 @@ class AppController extends Controller {
       /*  $this->log(print_r($this->Auth, true), LOG_ERR);*/
   $this->Auth->allow('index', 'view', 'search');
         $this->set('user', $this->Auth->user());
-
+        //print_r($this->Auth->user());
         // AuthComponent の設定
         $this->Auth->loginAction = array(
             'controller' => 'users',

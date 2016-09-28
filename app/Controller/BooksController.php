@@ -70,7 +70,7 @@ class BooksController extends AppController {
         $result_booking = $Bookinglist->find('first', array(
             'conditions' => array('Bookinglist.book_id' => $id)
         ));
-        echo "<pre>";
+       /* echo "<pre>";
         print_r($result_booking);
         print_r($result_booking['Bookinglist']['book_id']);
         if(($result_booking['Bookinglist']['book_id']) == $id){
@@ -78,7 +78,7 @@ class BooksController extends AppController {
         } else {
             echo'残念';
         }
-        echo "</pre>";
+        echo "</pre>";*/
 
 //        echo "<pre>";
 //        print_r($result);

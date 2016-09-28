@@ -1,5 +1,5 @@
 <div class="groups view">
-<h2><?php echo __('Group'); ?></h2>
+<h2><?php echo __('権限グループの詳細'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -11,6 +11,7 @@
 			<?php echo h($group['Group']['name']); ?>
 			&nbsp;
 		</dd>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($group['Group']['created']); ?>
@@ -21,19 +22,28 @@
 			<?php echo h($group['Group']['modified']); ?>
 			&nbsp;
 		</dd>
+        <?php endif; ?>
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Group'), array('action' => 'edit', $group['Group']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Group'), array('action' => 'delete', $group['Group']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $group['Group']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+    <h3><?php echo __('メニュー'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('本を探す'), array('controller' => 'books', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('著者一覧'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('貸出中リスト'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('予約リスト'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
+            <li><?php echo $this->Html->link(__('出版社一覧'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('図書種別一覧'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('ユーザー一覧'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+            <hr style="clear:both; margin:20px 0 20px 0">
+            <li><?php echo $this->Html->link(__('権限グループを追加する'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
+            <li><?php echo $this->Html->link(__('権限グループに戻る'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+        <?php endif; ?>
+    </ul>
 </div>
+
+<?php if ($user['Group']['name'] == 'administrators'): ?>
 <div class="related">
 	<h3><?php echo __('Related Users'); ?></h3>
 	<?php if (!empty($group['User'])): ?>
@@ -70,4 +80,5 @@
 			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
+    <?php endif; ?>
 </div>

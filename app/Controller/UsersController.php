@@ -19,7 +19,7 @@ class UsersController extends AppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view', 'register','login', 'logout');
+        $this->Auth->allow('register','login', 'logout');
 //        $this->Auth->allow();
 //        $this->Auth->allow('initDB');
     }

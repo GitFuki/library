@@ -41,7 +41,8 @@ class AuthorsController extends AppController {
 		}
 		$options = array('conditions' => array('Author.' . $this->Author->primaryKey => $id));
 		$this->set('author', $this->Author->find('first', $options));
-	}
+        //print_r($this->Author->find('first', $options));
+    }
 
 /**
  * add method
@@ -81,7 +82,9 @@ class AuthorsController extends AppController {
 		} else {
 			$options = array('conditions' => array('Author.' . $this->Author->primaryKey => $id));
 			$this->request->data = $this->Author->find('first', $options);
-		}
+            $this->set('author', $this->request->data);
+            //print_r($this->request->data);
+        }
 	}
 
 /**
