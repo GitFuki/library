@@ -106,4 +106,16 @@ class Borrowinglist extends AppModel {
 			'order' => ''
 		)
 	);
+ //貸出の返却日時をviewに渡す
+    public function getReturnTime ($id=null, $date=null) {
+        $dateString = $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' ' . $date['hour'] . ':' . $date['min'];
+        if (!$this->Borrowinglist->exists($date)) {
+            throw new NotFoundException(__('Invalid date'));
+        }
+        $options = array('conditions' => array('Borrowinglist.' . $this->Borrowinglist->primaryKey => $date));
+        $this->set('getReturnTime', $this->Borrowinglist->find('first', $options));
+
+
+    }
+
 }

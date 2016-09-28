@@ -1,4 +1,8 @@
 <?php
+print_r('getReturnTime');
+?>
+
+<?php
 App::uses('AppController', 'Controller');
 /**
  * Borrowinglists Controller
