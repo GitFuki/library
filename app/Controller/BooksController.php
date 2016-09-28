@@ -66,15 +66,17 @@ class BooksController extends AppController {
             'conditions' => array('Borrowinglist.book_id' => $id)
         ));
 
-        echo "<pre>";
-        print_r($result);
-        print_r($result['Borrowinglist']['user_id']);
-        if($this->set()){
-
-        }
-        echo "</pre>";
-
-
+//        echo "<pre>";
+//        print_r($result);
+//        print_r($result['Borrowinglist']['book_id']);
+//        if(($result['Borrowinglist']['book_id']) == $id){
+//            echo'hogehoge';
+//        } else {
+//            echo'残念';
+//        }
+//        echo "</pre>";
+//
+       $this->set(compact('result', $result));
     }
 
 /**

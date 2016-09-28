@@ -1,3 +1,15 @@
+<?php echo "<pre>";
+print_r($result);
+print_r($book);
+/*print_r($result['Borrowinglist']['book_id']);*/
+        if(!empty($book['Borrowinglist'] && $result['Borrowinglist']['book_id']) == $book['Book']['id']){
+            echo'hogehoge';
+        } else {
+            echo'残念';
+        }
+        echo "</pre>";
+echo "</pre>";
+?>
 <div class="books view">
 <h2><?php echo __('「'.$book['Book']['name'].'」の詳細情報'); ?></h2>
 	<dl>
@@ -75,15 +87,14 @@
 	</dl>
 	<div class="booking-outerbox">
 		<div class="booking-innerbox">
-		<h3><?php echo __('この図書を予約する'); ?></h3>
-			<?php /*foreach ($book['Bookinglist'] as $bookinglist): */?><!--
-				<?php
-/*				$booking_id = $this->
-				if ($book['Book']['id'] = $book['Bookinglist']['book_id']) {
-				echo 'sdkljfa';
-				}
-	*/?>
-			--><?php /*endforeach; */?>
+		<h3><?php echo __('この図書の貸し出し状況'); ?></h3>
+			<?php
+			if((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])){
+			echo  __('「'.$book['Book']['name'] . '」は現在、貸出中です。<br>');
+			echo  __('返却予定は、'.$result['Borrowinglist']['return_time'].'ですので、それ以降、貸し出し可能です。');
+			} else {
+			echo __('「'.$book['Book']['name'].'」は現在、貸し出し可能です。');
+			} ?>
 			</div>
 	</div>
 
