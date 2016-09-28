@@ -3,13 +3,13 @@
     <?php echo $this->Form->create('User'); ?>
     <fieldset>
         <legend>
-            <?php echo __('Please enter your username and password'); ?>
+            <?php echo __('ユーザーIDとパスワードを入力してください。'); ?>
         </legend>
-        <?php echo $this->Form->input('username');
-        echo $this->Form->input('password');
+        <?php echo $this->Form->input('username', array('label'=>'ユーザーID'));
+        echo $this->Form->input('password', array('label'=>'パスワード'));
         ?>
     </fieldset>
-    <?php echo $this->Form->end(__('Login')); ?>
+    <?php echo $this->Form->end(__('ログイン')); ?>
     <hr style="clear:both; margin:200px 0 20px 0">
-    <?php echo "New user? ", $this->Html->link(__('Resister here'), array('action' => 'add')); ?></p>
+    <?php echo '新規登録は' . $this->Html->link(__('こちらから'), array('action' => 'register')); ?></p>
 </div>

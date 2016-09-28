@@ -8,6 +8,8 @@ print_r($book);
             echo'残念';
         }
         echo "</pre>";
+echo print_r(date_parse("2006-12-12 10:00:00.5"));
+
 echo "</pre>";
 ?>
 <div class="books view">
@@ -89,11 +91,12 @@ echo "</pre>";
 		<div class="booking-innerbox">
 		<h3><?php echo __('この図書の貸し出し状況'); ?></h3>
 			<?php
-			if((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])){
-			echo  __('「'.$book['Book']['name'] . '」は現在、貸出中です。<br>');
-			echo  __('返却予定は、'.$result['Borrowinglist']['return_time'].'ですので、それ以降、貸し出し可能です。');
+			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
+				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
+				echo __('返却予定は、' . $result['Borrowinglist']['return_time']
+					. 'ですので、それ以降、貸し出し可能です。');
 			} else {
-			echo __('「'.$book['Book']['name'].'」は現在、貸し出し可能です。');
+				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
 			} ?>
 			</div>
 	</div>

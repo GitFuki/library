@@ -19,7 +19,7 @@ class UsersController extends AppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view', 'login', 'logout');
+        $this->Auth->allow('index', 'view', 'register','login', 'logout');
 //        $this->Auth->allow();
 //        $this->Auth->allow('initDB');
     }
@@ -49,7 +49,7 @@ class UsersController extends AppController {
     public function login(){
         if ($this->request->is('post')){
             if($this->Auth->login()){
-                $this->redirect($this->Auth->redirectURL());
+                $this->redirect($this->Auth->redirectURL('../books/index'));
             } else {
                 $this->Flash->error(__('Invalid username or password, try again'));
             }
@@ -70,8 +70,10 @@ class UsersController extends AppController {
     public function logout() {
 //        $this->Auth->logout();
 //        $this->redirect('login');
-        $this->Flash->set('Good-Bye');
-        $this->redirect($this->Auth->logout());
+        $this->Flash->set('ログアウトしました。');
+//        $this->redirect($this->Auth->logout('../books/index'));
+        $this->Auth->logout();
+        $this->redirect('../books/index');
     }
 
 /**
