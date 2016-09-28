@@ -66,6 +66,20 @@ class BooksController extends AppController {
             'conditions' => array('Borrowinglist.book_id' => $id)
         ));
 
+        $Bookinglist = new Bookinglist();
+        $result_booking = $Bookinglist->find('first', array(
+            'conditions' => array('Bookinglist.book_id' => $id)
+        ));
+        echo "<pre>";
+        print_r($result_booking);
+        print_r($result_booking['Bookinglist']['book_id']);
+        if(($result_booking['Bookinglist']['book_id']) == $id){
+            echo'hogehoge';
+        } else {
+            echo'残念';
+        }
+        echo "</pre>";
+
 //        echo "<pre>";
 //        print_r($result);
 //        print_r($result['Borrowinglist']['book_id']);
@@ -77,6 +91,7 @@ class BooksController extends AppController {
 //        echo "</pre>";
 //
        $this->set(compact('result', $result));
+        $this->set(compact('result_booking', $result_booking));
     }
 
 /**

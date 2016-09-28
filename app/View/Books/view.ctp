@@ -102,16 +102,21 @@ echo "</pre>";
 		<div class="booking-innerbox">
 			<h3><?php echo __('この図書の予約状況'); ?></h3>
 			<?php
-			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
-				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
-				echo __('返却予定は、' . $result['Borrowinglist']['return_time']
-					. 'ですので、それ以降、貸し出し可能です。');
+			if ((!empty($book['Bookinglist'])) && (($result_booking['Bookinglist']['book_id']) == $book['Book']['id'])) {
+				echo __('「' . $book['Book']['name'] . '」は他のユーザーにより予約が入っています。<br>');
+				echo __('予約期限は、' . $result_booking['Bookinglist']['booking_expire_time']
+					. 'ですので、それ以降、下記のボタンで予約可能です。');
 			} else {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
 			} ?>
 		</div>
+		<!--<div class="booking-innerbox">
+			<p>この本を予約したい場合は、下記の予約ボタンから予約フォームに入力し予約できます。"</p>
+			<button onclick="location.href='<?php /*echo $this->html->url('/bookinglists/add/' . $customer_id); */?>';">
+				予約する
+			</button>
+		</div>-->
 	</div>
-
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
