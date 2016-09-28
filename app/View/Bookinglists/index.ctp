@@ -1,5 +1,5 @@
 <div class="bookinglists index">
-	<h2><?php echo __('Bookinglists'); ?></h2>
+	<h2><?php echo __('予約一覧'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

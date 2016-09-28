@@ -1,7 +1,7 @@
 <div class="borrowinglists form">
 <?php echo $this->Form->create('Borrowinglist'); ?>
 	<fieldset>
-		<legend><?php echo __('図書貸し出しリスト'); ?></legend>
+		<legend><?php echo __('図書貸し出しフォーム'); ?></legend>
 	<?php
 		echo $this->Form->input('book_id',array(
 		'label'=> '貸出本のタイトル'));

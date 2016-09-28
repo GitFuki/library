@@ -1,7 +1,7 @@
 <div class="books form">
 <?php echo $this->Form->create('Book', array('type' => 'file'));?>
 	<fieldset>
-		<legend><?php echo __('Add Book'); ?></legend>
+		<legend><?php echo __('蔵書の追加'); ?></legend>
 	<?php
 		echo $this->Form->input('name', array(
 			'label'=> 'タイトル'));

@@ -89,26 +89,41 @@ echo "</pre>";
 	</dl>
 	<div class="booking-outerbox">
 		<div class="booking-innerbox">
-			<h3><?php echo __('この図書の貸し出し状況'); ?></h3>
+			<h3><?php echo __('「' . $book['Book']['name'] . '」の貸出・予約状況'); ?></h3>
 			<?php
-			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
+			if (empty($book['Borrowinglist']) && empty($book['Bookinglist'])) {
+				echo __('現在、「' . $book['Book']['name'] . '」は、<strong>貸し出し可能</strong>です。');
+				echo __('<p>ご予約は' . $this->Html->link(__('こちらから'), array('controller' => 'bookinglists', 'action' => 'add')). '</p>');
+			} else {
+				echo __('現在、「' .  $book['Book']['name'] . '」は、<strong>貸出: ' . count($book['Borrowinglist']) . '件、予約: ' . count($book['Bookinglist']) . '件</strong> 入っています。');
+			}
+
+/*				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
+				echo __('返却予定は、' . $result['Borrowinglist']['return_time']
+					. 'ですので、それ以降、貸し出し可能です。');
+			} else {
+				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
+			} */?><!--
+
+			--><?php
+/*			if ((!empty($book['Borrowinglist'])) && (($result['Borrowinglist']['book_id']) == $book['Book']['id'])) {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸出中です。<br>');
 				echo __('返却予定は、' . $result['Borrowinglist']['return_time']
 					. 'ですので、それ以降、貸し出し可能です。');
 			} else {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
-			} ?>
-		</div>
+			} */?>
+<!--		</div>
 		<div class="booking-innerbox">
-			<h3><?php echo __('この図書の予約状況'); ?></h3>
-			<?php
-			if ((!empty($book['Bookinglist'])) && (($result_booking['Bookinglist']['book_id']) == $book['Book']['id'])) {
+			<h3><?php /*echo __('「' . $book['Book']['name'] . '」の予約状況'); */?></h3>
+			--><?php
+/*			if ((!empty($book['Bookinglist'])) && (($result_booking['Bookinglist']['book_id']) == $book['Book']['id'])) {
 				echo __('「' . $book['Book']['name'] . '」は他のユーザーにより予約が入っています。<br>');
 				echo __('予約期限は、' . $result_booking['Bookinglist']['booking_expire_time']
 					. 'ですので、それ以降、下記のボタンで予約可能です。');
 			} else {
 				echo __('「' . $book['Book']['name'] . '」は現在、貸し出し可能です。');
-			} ?>
+			} */?>
 		</div>
 		<!--<div class="booking-innerbox">
 			<p>この本を予約したい場合は、下記の予約ボタンから予約フォームに入力し予約できます。"</p>
@@ -138,7 +153,7 @@ echo "</pre>";
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('予約リスト一覧'); ?></h3>
+	<h3><?php echo __('「' . $book['Book']['name'] . '」の予約リスト一覧'); ?></h3>
 	<?php if (!empty($book['Bookinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -177,7 +192,7 @@ echo "</pre>";
 	</div>
 </div>
 <div class="related">
-	<h3><?php echo __('貸出リスト一覧'); ?></h3>
+	<h3><?php echo __('「' . $book['Book']['name'] . '」の貸出リスト一覧'); ?></h3>
 	<?php if (!empty($book['Borrowinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>

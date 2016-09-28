@@ -1,12 +1,16 @@
 <div class="bookinglists form">
 <?php echo $this->Form->create('Bookinglist'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Bookinglist'); ?></legend>
+		<legend><?php echo __('ご予約フォーム'); ?></legend>
 	<?php
-		echo $this->Form->input('book_id');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('booking_start_time');
-		echo $this->Form->input('booking_expire_time');
+		echo $this->Form->input('book_id', array(
+			'label'=> '本を選択'));
+		echo $this->Form->input('user_id', array(
+			'label'=> 'ユーザーIDを選択'));
+		echo $this->Form->input('booking_start_time', array(
+			'label'=> 'ご予約開始'));
+		echo $this->Form->input('booking_expire_time', array(
+			'label'=> 'ご返却予定日時'));
 		echo $this->Form->input('created_time');
 		echo $this->Form->input('modified_time');
 	?>
