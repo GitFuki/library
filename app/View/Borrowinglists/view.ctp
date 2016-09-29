@@ -1,5 +1,5 @@
 <div class="borrowinglists view">
-<h2><?php echo __('貸出中リストの修正'); ?></h2>
+<h2><?php echo __('「' . $borrowinglist['Book']['name'] . '」の貸出情報'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>

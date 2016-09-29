@@ -85,21 +85,21 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('author_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('Book cover'); ?></th>
-			<th><?php echo $this->Paginator->sort('publisher_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('published'); ?></th>
-			<th><?php echo $this->Paginator->sort('field_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('bestseller'); ?></th>
-			<th><?php echo $this->Paginator->sort('price'); ?></th>
-			<th><?php echo $this->Paginator->sort('page'); ?></th>
+			<th><?php echo $this->Paginator->sort('name', 'タイトル'); ?></th>
+			<th><?php echo $this->Paginator->sort('author_id', '著者名'); ?></th>
+			<th><?php echo $this->Paginator->sort('Book cover', '表紙'); ?></th>
+			<th><?php echo $this->Paginator->sort('publisher_id', '出版社'); ?></th>
+			<th><?php echo $this->Paginator->sort('published', '出版年月'); ?></th>
+			<th><?php echo $this->Paginator->sort('field_id', '種別'); ?></th>
+			<th><?php echo $this->Paginator->sort('bestseller', 'ベストセラー'); ?></th>
+			<th><?php echo $this->Paginator->sort('price', '価格'); ?></th>
+			<th><?php echo $this->Paginator->sort('page', 'ページ数'); ?></th>
 			<th><?php echo $this->Paginator->sort('isbn'); ?></th>
-			<th><?php echo $this->Paginator->sort('summary'); ?></th>
+			<th><?php echo $this->Paginator->sort('summary', 'サマリー'); ?></th>
             <?php if ($user['Group']['name'] == 'administrators'): ?>
-			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_time', '作成日時'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified_time', '変更日時'); ?></th>
+			<th class="actions"><?php echo __('操作'); ?></th>
             <?php endif; ?>
 	</tr>
 	</thead>
@@ -130,9 +130,9 @@
 		<td><?php echo h($book['Book']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $book['Book']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $book['Book']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $book['Book']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['Book']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $book['Book']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $book['Book']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $book['Book']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['Book']['id']))); ?>
 		</td>
         <?php endif; ?>
 	</tr>

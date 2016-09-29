@@ -1,8 +1,7 @@
 <div class="authors form">
-<?php echo $this->Form->create('Author', array('type' => 'file'));
-//print_r($author); ?>
+<?php echo $this->Form->create('Author', array('type' => 'file')); ?>
 	<fieldset>
-		<legend><?php echo __($author['Author']['name'].'の情報を修正'); ?></legend>
+		<legend><?php echo __('「' . $author['Author']['name'] . '」の情報を修正'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name', array(
@@ -10,10 +9,11 @@
         echo $this->Form->input('photo', array(
         'type' => 'file',
         'label'=> 'プロフィール画像'));
+    echo '【選択中の画像】<br>';
     $base = $this->Html->url( '/../files/author/photo/');
-    echo $base.$author['Author']['photo_dir'].'/' . $author['Author']['photo'];
-        echo $this->Form->input('photo_dir', array('type' => 'hidden'));
-
+    echo $base.$author['Author']['photo_dir'].'/' . $author['Author']['photo'] . '<br>';
+    echo $this->Html->image($base.$author['Author']['photo_dir'].'/' . $author['Author']['photo'], array('class' => 'book-icon', 'alt' => $author['Author']['name'], 'width' => '100px'));
+    echo $this->Form->input('photo_dir', array('type' => 'hidden'));
 		echo $this->Form->input('detail', array(
             'label'=> '著者紹介'));
         echo $this->Form->input('created_time', array(
@@ -22,7 +22,7 @@
             'label'=> '修正日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('修正する')); ?>
+<?php echo $this->Form->end(__('修正を反映')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

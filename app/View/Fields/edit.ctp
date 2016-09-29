@@ -1,15 +1,18 @@
 <div class="fields form">
 <?php echo $this->Form->create('Field'); ?>
 	<fieldset>
-		<legend><?php echo __('図書種別を修正する'); ?></legend>
+		<legend><?php echo __('「' . $fields['Field']['name'].'」の図書種別を修正する'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+		echo $this->Form->input('name', array(
+            'label'=> '種別名'));
+		echo $this->Form->input('created_time', array(
+            'label'=> '作成日時'));
+		echo $this->Form->input('modified_time', array(
+            'label'=> '変更日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('修正を反映')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

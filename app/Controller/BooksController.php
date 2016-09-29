@@ -141,6 +141,8 @@ class BooksController extends AppController {
 		$publishers = $this->Book->Publisher->find('list');
 		$fields = $this->Book->Field->find('list');
 		$this->set(compact('authors', 'publishers', 'fields'));
+        $this->set('books', $this->request->data);
+        //print_r($this->request->data);
 	}
 
 /**

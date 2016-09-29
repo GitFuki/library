@@ -46,7 +46,7 @@
 	));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('追加')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

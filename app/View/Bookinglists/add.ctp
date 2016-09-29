@@ -11,11 +11,13 @@
 			'label'=> 'ご予約開始'));
 		echo $this->Form->input('booking_expire_time', array(
 			'label'=> 'ご返却予定日時'));
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+		echo $this->Form->input('created_time', array(
+            'label'=> '作成日時'));
+		echo $this->Form->input('modified_time', array(
+            'label'=> '変更日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('追加する')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

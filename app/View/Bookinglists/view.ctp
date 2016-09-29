@@ -1,38 +1,38 @@
 <div class="bookinglists view">
-<h2><?php echo __('予約リスト'); ?></h2>
+<h2><?php echo __('「' . $bookinglist['Book']['name'] . '」の予約情報'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($bookinglist['Bookinglist']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Book'); ?></dt>
+		<dt><?php echo __('タイトル'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($bookinglist['Book']['name'], array('controller' => 'books', 'action' => 'view', $bookinglist['Book']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
+		<dt><?php echo __('ユーザー'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($bookinglist['User']['id'], array('controller' => 'users', 'action' => 'view', $bookinglist['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Booking Start Time'); ?></dt>
+		<dt><?php echo __('予約日'); ?></dt>
 		<dd>
 			<?php echo h($bookinglist['Bookinglist']['booking_start_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Booking Expire Time'); ?></dt>
+		<dt><?php echo __('予約期限'); ?></dt>
 		<dd>
 			<?php echo h($bookinglist['Bookinglist']['booking_expire_time']); ?>
 			&nbsp;
 		</dd>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($bookinglist['Bookinglist']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('修正日時'); ?></dt>
 		<dd>
 			<?php echo h($bookinglist['Bookinglist']['modified_time']); ?>
 			&nbsp;

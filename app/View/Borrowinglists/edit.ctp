@@ -1,18 +1,25 @@
 <div class="borrowinglists form">
 <?php echo $this->Form->create('Borrowinglist'); ?>
 	<fieldset>
-		<legend><?php echo __('貸出中リスト詳細'); ?></legend>
+		<legend><?php echo __('「' . $borrowings['Book']['name'].'」の貸出情報を修正する'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('book_id');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('borrowed_time');
-		echo $this->Form->input('return_time');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+		echo $this->Form->input('id', array(
+            'label'=> 'タイトル'));
+		echo $this->Form->input('book_id', array(
+            'label'=> 'タイトル'));
+		echo $this->Form->input('user_id', array(
+            'label'=> 'ユーザー'));
+		echo $this->Form->input('borrowed_time', array(
+            'label'=> '貸出日'));
+		echo $this->Form->input('return_time', array(
+            'label'=> '返却期限'));
+		echo $this->Form->input('created_time', array(
+            'label'=> '作成日時'));
+		echo $this->Form->input('modified_time', array(
+            'label'=> '変更日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('修正を反映')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

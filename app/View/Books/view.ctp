@@ -151,21 +151,17 @@ echo "</pre>";
 	<?php if (!empty($book['Bookinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Book Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Booking Start Time'); ?></th>
-		<th><?php echo __('Booking Expire Time'); ?></th>
+		<th><?php echo __('予約日'); ?></th>
+		<th><?php echo __('予約期限'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<th><?php echo __('Created Time'); ?></th>
-		<th><?php echo __('Modified Time'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo __('作成日時'); ?></th>
+		<th><?php echo __('更新日時'); ?></th>
+		<th class="actions"><?php echo __('権限操作'); ?></th>
         <?php endif; ?>
 	</tr>
 	<?php foreach ($book['Bookinglist'] as $bookinglist): ?>
 		<tr>
-			<td><?php echo $bookinglist['id']; ?></td>
-			<td><?php echo $bookinglist['book_id']; ?></td>
 			<td><?php echo $bookinglist['user_id']; ?></td>
 			<td><?php echo $bookinglist['booking_start_time']; ?></td>
 			<td><?php echo $bookinglist['booking_expire_time']; ?></td>
@@ -173,9 +169,9 @@ echo "</pre>";
 			<td><?php echo $bookinglist['created_time']; ?></td>
 			<td><?php echo $bookinglist['modified_time']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'bookinglists', 'action' => 'view', $bookinglist['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'bookinglists', 'action' => 'edit', $bookinglist['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'bookinglists', 'action' => 'delete', $bookinglist['id']), array('confirm' => __('Are you sure you want to delete # %s?', $bookinglist['id']))); ?>
+				<?php echo $this->Html->link(__('詳細'), array('controller' => 'bookinglists', 'action' => 'view', $bookinglist['id'])); ?>
+				<?php echo $this->Html->link(__('修正'), array('controller' => 'bookinglists', 'action' => 'edit', $bookinglist['id'])); ?>
+				<?php echo $this->Form->postLink(__('削除'), array('controller' => 'bookinglists', 'action' => 'delete', $bookinglist['id']), array('confirm' => __('Are you sure you want to delete # %s?', $bookinglist['id']))); ?>
                 <?php endif; ?>
             </td>
 		</tr>
@@ -194,21 +190,17 @@ echo "</pre>";
 	<?php if (!empty($book['Borrowinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Book Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Borrowed Time'); ?></th>
-		<th><?php echo __('Return Time'); ?></th>
+		<th><?php echo __('貸出日'); ?></th>
+		<th><?php echo __('返却期限'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<th><?php echo __('Created Time'); ?></th>
-		<th><?php echo __('Modified Time'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo __('作成日時'); ?></th>
+		<th><?php echo __('更新日時'); ?></th>
+		<th class="actions"><?php echo __('権限操作'); ?></th>
         <?php endif; ?>
 	</tr>
 	<?php foreach ($book['Borrowinglist'] as $borrowinglist): ?>
 		<tr>
-			<td><?php echo $borrowinglist['id']; ?></td>
-			<td><?php echo $borrowinglist['book_id']; ?></td>
 			<td><?php echo $borrowinglist['user_id']; ?></td>
 			<td><?php echo $borrowinglist['borrowed_time']; ?></td>
 			<td><?php echo $borrowinglist['return_time']; ?></td>
@@ -216,9 +208,9 @@ echo "</pre>";
 			<td><?php echo $borrowinglist['created_time']; ?></td>
 			<td><?php echo $borrowinglist['modified_time']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'borrowinglists', 'action' => 'view', $borrowinglist['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'borrowinglists', 'action' => 'edit', $borrowinglist['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'borrowinglists', 'action' => 'delete', $borrowinglist['id']), array('confirm' => __('Are you sure you want to delete # %s?', $borrowinglist['id']))); ?>
+				<?php echo $this->Html->link(__('詳細'), array('controller' => 'borrowinglists', 'action' => 'view', $borrowinglist['id'])); ?>
+				<?php echo $this->Html->link(__('修正'), array('controller' => 'borrowinglists', 'action' => 'edit', $borrowinglist['id'])); ?>
+				<?php echo $this->Form->postLink(__('削除'), array('controller' => 'borrowinglists', 'action' => 'delete', $borrowinglist['id']), array('confirm' => __('Are you sure you want to delete # %s?', $borrowinglist['id']))); ?>
 			</td>
         <?php endif; ?>
 		</tr>

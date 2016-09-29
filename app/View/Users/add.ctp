@@ -13,7 +13,7 @@
         echo $this->Form->input('group_id');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('追加する')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

@@ -50,6 +50,7 @@
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Name'); ?></th>
 		<th><?php echo __('Author Id'); ?></th>
+		<th><?php echo __('Book cover'); ?></th>
 		<th><?php echo __('Publisher Id'); ?></th>
 		<th><?php echo __('Published'); ?></th>
 		<th><?php echo __('Field Id'); ?></th>
@@ -67,8 +68,11 @@
 	<?php foreach ($publisher['Book'] as $book): ?>
 		<tr>
 			<td><?php echo $book['id']; ?></td>
-			<td><?php echo $book['name']; ?></td>
+			<td><?php echo $this->Html->link($book['name'], array('controller' => 'books', 'action' => 'view', $book['id'])); ?></td>
 			<td><?php echo $book['author_id']; ?></td>
+			<td><?php $base = $this->Html->url( '/../files/book/photo/');
+				echo $this->Html->image($base.$book['photo_dir'].'/' . $book['photo'], array('class' => 'book-icon', 'alt' => $book['name'], 'width' => '100px'));
+				?></td>
 			<td><?php echo $book['publisher_id']; ?></td>
 			<td><?php echo $book['published']; ?></td>
 			<td><?php echo $book['field_id']; ?></td>
@@ -93,7 +97,7 @@
     <?php if ($user['Group']['name'] == 'administrators'): ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('本を追加する'), array('controller' => 'books', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
     <?php endif; ?>

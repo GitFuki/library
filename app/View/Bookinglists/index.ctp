@@ -4,14 +4,14 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('book_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('booking_start_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('booking_expire_time'); ?></th>
+			<th><?php echo $this->Paginator->sort('book_id', 'タイトル'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_id', 'ユーザー'); ?></th>
+			<th><?php echo $this->Paginator->sort('booking_start_time', '予約日'); ?></th>
+			<th><?php echo $this->Paginator->sort('booking_expire_time', '予約期限'); ?></th>
             <?php if ($user['Group']['name'] == 'administrators'): ?>
-			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_time', '作成日時'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified_time', '更新日時'); ?></th>
+			<th class="actions"><?php echo __('権限操作'); ?></th>
             <?php endif; ?>
 	</tr>
 	</thead>
@@ -31,9 +31,9 @@
 		<td><?php echo h($bookinglist['Bookinglist']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($bookinglist['Bookinglist']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $bookinglist['Bookinglist']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $bookinglist['Bookinglist']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $bookinglist['Bookinglist']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $bookinglist['Bookinglist']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $bookinglist['Bookinglist']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $bookinglist['Bookinglist']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $bookinglist['Bookinglist']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $bookinglist['Bookinglist']['id']))); ?>
 		</td>
         <?php endif; ?>
 	</tr>

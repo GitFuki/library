@@ -4,14 +4,14 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('book_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('borrowed_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('return_time'); ?></th>
+			<th><?php echo $this->Paginator->sort('book_id', 'タイトル'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_id','ユーザー'); ?></th>
+			<th><?php echo $this->Paginator->sort('borrowed_time','貸出日'); ?></th>
+			<th><?php echo $this->Paginator->sort('return_time','返却期限'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-            <th><?php echo $this->Paginator->sort('created_time'); ?></th>
-            <th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-            <th class="actions"><?php echo __('Actions'); ?></th>
+            <th><?php echo $this->Paginator->sort('created_time','作成日時'); ?></th>
+            <th><?php echo $this->Paginator->sort('modified_time','変更日時'); ?></th>
+            <th class="actions"><?php echo __('操作権限'); ?></th>
         <?php endif; ?>
 	</tr>
 	</thead>
@@ -31,9 +31,9 @@
 		<td><?php echo h($borrowinglist['Borrowinglist']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($borrowinglist['Borrowinglist']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $borrowinglist['Borrowinglist']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $borrowinglist['Borrowinglist']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $borrowinglist['Borrowinglist']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $borrowinglist['Borrowinglist']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $borrowinglist['Borrowinglist']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $borrowinglist['Borrowinglist']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $borrowinglist['Borrowinglist']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $borrowinglist['Borrowinglist']['id']))); ?>
 		</td>
         <?php endif; ?>
 	</tr>

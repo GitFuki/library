@@ -1,5 +1,5 @@
 <div class="authors view">
-<h2><?php echo __($author['Author']['name'].'の紹介'); ?></h2>
+<h2><?php echo __('「'.$author['Author']['name'].'」の紹介'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -60,21 +60,20 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Author Id'); ?></th>
-		<th><?php echo __('Book cover'); ?></th>
-		<th><?php echo __('Publisher Id'); ?></th>
-		<th><?php echo __('Published'); ?></th>
-		<th><?php echo __('Field Id'); ?></th>
-		<th><?php echo __('Bestseller'); ?></th>
-		<th><?php echo __('Price'); ?></th>
-		<th><?php echo __('Page'); ?></th>
+		<th><?php echo __('著者名'); ?></th>
+		<th><?php echo __('表紙'); ?></th>
+		<th><?php echo __('出版社'); ?></th>
+		<th><?php echo __('出版年月'); ?></th>
+		<th><?php echo __('種別'); ?></th>
+		<th><?php echo __('ベストセラー'); ?></th>
+		<th><?php echo __('価格'); ?></th>
+		<th><?php echo __('ページ数'); ?></th>
 		<th><?php echo __('Isbn'); ?></th>
-		<th><?php echo __('Summary'); ?></th>
+		<th><?php echo __('サマリー'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<th><?php echo __('Created Time'); ?></th>
-		<th><?php echo __('Modified Time'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo __('作成日時'); ?></th>
+		<th><?php echo __('変更日時'); ?></th>
+		<th class="actions"><?php echo __('権限操作'); ?></th>
         <?php endif; ?>
 	</tr>
 	<?php foreach ($author['Book'] as $book): ?>
@@ -82,7 +81,6 @@
 			<td><?php echo $book['id']; ?></td>
             <td><?php echo $this->Html->link($book['name'], array('controller' => 'books', 'action' => 'view', $book['id'])); ?></td>
             <!--<td><?php /*echo $book['name']; */?></td>-->
-			<td><?php echo $book['author_id']; ?></td>
 			<td><?php $base = $this->Html->url( '/../files/book/photo/');
 				echo $this->Html->image($base.$book['photo_dir'].'/' . $book['photo'], array('class' => 'book-icon', 'alt' => $book['name'], 'width' => '100px'));
 				?></td>
@@ -98,9 +96,9 @@
 			<td><?php echo $book['created_time']; ?></td>
 			<td><?php echo $book['modified_time']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'books', 'action' => 'view', $book['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'books', 'action' => 'edit', $book['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'books', 'action' => 'delete', $book['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['id']))); ?>
+				<?php echo $this->Html->link(__('詳細'), array('controller' => 'books', 'action' => 'view', $book['id'])); ?>
+				<?php echo $this->Html->link(__('修正'), array('controller' => 'books', 'action' => 'edit', $book['id'])); ?>
+				<?php echo $this->Form->postLink(__('削除'), array('controller' => 'books', 'action' => 'delete', $book['id']), array('confirm' => __('Are you sure you want to delete # %s?', $book['id']))); ?>
 			</td>
             <?php endif; ?>
 		</tr>

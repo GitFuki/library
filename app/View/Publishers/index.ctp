@@ -16,7 +16,7 @@
 	<?php foreach ($publishers as $publisher): ?>
 	<tr>
 		<td><?php echo h($publisher['Publisher']['id']); ?>&nbsp;</td>
-		<td><?php echo h($publisher['Publisher']['name']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($publisher['Publisher']['name'], array('controller' => 'publishers', 'action' => 'view', $publisher['Publisher']['id'])); ?></td>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
         <td><?php echo h($publisher['Publisher']['created_time']); ?>&nbsp;</td>
         <td><?php echo h($publisher['Publisher']['modified_time']); ?>&nbsp;</td>
