@@ -1,23 +1,23 @@
 <div class="publishers view">
-<h2><?php echo __('出版社の詳細'); ?></h2>
+<h2><?php echo __('「' . $publisher['Publisher']['name'] . '」の詳細'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($publisher['Publisher']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Name'); ?></dt>
+		<dt><?php echo __('社名'); ?></dt>
 		<dd>
 			<?php echo h($publisher['Publisher']['name']); ?>
 			&nbsp;
 		</dd>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-        <dt><?php echo __('Created Time'); ?></dt>
+        <dt><?php echo __('作成日時'); ?></dt>
         <dd>
             <?php echo h($publisher['Publisher']['created_time']); ?>
             &nbsp;
         </dd>
-        <dt><?php echo __('Modified Time'); ?></dt>
+        <dt><?php echo __('修正日時'); ?></dt>
         <dd>
             <?php echo h($publisher['Publisher']['modified_time']); ?>
             &nbsp;
@@ -48,21 +48,21 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Author Id'); ?></th>
-		<th><?php echo __('Book cover'); ?></th>
-		<th><?php echo __('Publisher Id'); ?></th>
-		<th><?php echo __('Published'); ?></th>
-		<th><?php echo __('Field Id'); ?></th>
-		<th><?php echo __('Bestseller'); ?></th>
-		<th><?php echo __('Price'); ?></th>
-		<th><?php echo __('Page'); ?></th>
+		<th><?php echo __('タイトル'); ?></th>
+		<th><?php echo __('著者'); ?></th>
+		<th><?php echo __('表紙'); ?></th>
+		<th><?php echo __('出版社'); ?></th>
+		<th><?php echo __('出版年月'); ?></th>
+		<th><?php echo __('種別'); ?></th>
+		<th><?php echo __('ベストセラー'); ?></th>
+		<th><?php echo __('価格'); ?></th>
+		<th><?php echo __('ページ数'); ?></th>
 		<th><?php echo __('Isbn'); ?></th>
-		<th><?php echo __('Summary'); ?></th>
+		<th><?php echo __('サマリー'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<th><?php echo __('Created Time'); ?></th>
-		<th><?php echo __('Modified Time'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo __('作成日時'); ?></th>
+		<th><?php echo __('修正日時'); ?></th>
+		<th class="actions"><?php echo __('権限操作'); ?></th>
         <?php endif; ?>
 	</tr>
 	<?php foreach ($publisher['Book'] as $book): ?>

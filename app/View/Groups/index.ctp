@@ -4,11 +4,11 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('name','グループ名'); ?></th>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo $this->Paginator->sort('created','作成日時'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified','修正日時'); ?></th>
+			<th class="actions"><?php echo __('操作権限'); ?></th>
         <?php endif; ?>
 	</tr>
 	</thead>
@@ -21,9 +21,9 @@
 		<td><?php echo h($group['Group']['created']); ?>&nbsp;</td>
 		<td><?php echo h($group['Group']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $group['Group']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $group['Group']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $group['Group']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $group['Group']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $group['Group']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $group['Group']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $group['Group']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $group['Group']['id']))); ?>
 		</td>
         <?php endif; ?>
 	</tr>

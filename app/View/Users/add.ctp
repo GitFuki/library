@@ -3,14 +3,20 @@
 	<fieldset>
 		<legend><?php echo __('ユーザーを追加する'); ?></legend>
 	<?php
-		echo $this->Form->input('last_name');
-		echo $this->Form->input('first_name');
+		echo $this->Form->input('last_name', array(
+            'label'=> '氏'));
+		echo $this->Form->input('first_name', array(
+            'label'=> '名'));
 		echo $this->Form->input('tel');
-		echo $this->Form->input('birthday');
+		echo $this->Form->input('birthday', array(
+            'label'=> '誕生日'));
 		echo $this->Form->input('email');
-        echo $this->Form->input('username');
-		echo $this->Form->input('password');
-        echo $this->Form->input('group_id');
+        echo $this->Form->input('username', array(
+            'label'=> 'ユーザー名'));
+		echo $this->Form->input('password', array(
+            'label'=> 'パスワード'));
+        echo $this->Form->input('group_id', array(
+            'label'=> '権限グループ'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('追加する')); ?>

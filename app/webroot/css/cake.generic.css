@@ -22,7 +22,8 @@
 
 /** General Style Info **/
 body {
-    background: #003d4c;
+    background: #300532;
+/*    background: #003d4c;*/
     color: #fff;
     font-family: 'lucida grande', verdana, helvetica, arial, sans-serif;
     font-size: 90%;
@@ -55,20 +56,20 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    background: #fff;
+    background: #300532;
     color: #003d4c;
     font-size: 100%;
 }
 
 h2 {
     background: #fff;
-    color: #e32;
+    color: #AA3763;
     font-family: 'Gill Sans', 'lucida grande', helvetica, arial, sans-serif;
     font-size: 190%;
 }
 
 h3 {
-    color: #2c6877;
+    color: #300532;
     font-family: 'Gill Sans', 'lucida grande', helvetica, arial, sans-serif;
     font-size: 165%;
 }
@@ -97,7 +98,7 @@ p {
 
 #header h1 {
     line-height: 20px;
-    background: #003d4c url('../img/cake.icon.png') no-repeat left;
+    background: #300532 url('../img/book_icon.gif') no-repeat left;
     color: #fff;
     padding: 0 30px;
 }

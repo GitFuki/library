@@ -98,8 +98,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
         $this->set('user', $this->User->findById($id));
-		/*$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));*/
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->set('user', $this->User->find('first', $options));
+        $groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
 	}
 
 /**
@@ -142,9 +144,9 @@ class UsersController extends AppController {
 		} else {
             $this->request->data = $this->User->findById($id);
             unset($this->request->data['User']['password']);
-			/*$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);*/
 		}
+		$groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
 	}
 
 /**

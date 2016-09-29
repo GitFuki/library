@@ -4,17 +4,17 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
+			<th><?php echo $this->Paginator->sort('last_name','氏'); ?></th>
+			<th><?php echo $this->Paginator->sort('first_name','名'); ?></th>
 			<th><?php echo $this->Paginator->sort('tel'); ?></th>
-			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
+			<th><?php echo $this->Paginator->sort('birthday','誕生日'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
-            <th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-            <th><?php echo $this->Paginator->sort('group_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+            <th><?php echo $this->Paginator->sort('username','ユーザ名'); ?></th>
+			<!--<th><?php /*echo $this->Paginator->sort('password','パスワード'); */?></th>-->
+            <th><?php echo $this->Paginator->sort('group_id','権限グループ'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_time','作成日時'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified_time','変更日時'); ?></th>
+			<th class="actions"><?php echo __('権限操作'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -27,14 +27,14 @@
 		<td><?php echo h($user['User']['birthday']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
         <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
+		<!--<td><?php /*echo h($user['User']['password']); */?>&nbsp;</td>-->
 		<td><?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $user['User']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $user['User']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

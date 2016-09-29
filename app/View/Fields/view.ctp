@@ -6,18 +6,18 @@
 			<?php echo h($field['Field']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Name'); ?></dt>
+		<dt><?php echo __('種別名'); ?></dt>
 		<dd>
 			<?php echo h($field['Field']['name']); ?>
 			&nbsp;
 		</dd>
         <?php if ($user['Group']['name'] == 'administrators'): ?>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($field['Field']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('修正日時'); ?></dt>
 		<dd>
 			<?php echo h($field['Field']['modified_time']); ?>
 			&nbsp;

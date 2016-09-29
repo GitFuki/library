@@ -1,22 +1,34 @@
+<?php
+/*echo '<pre>';
+print_r($user);
+echo '</pre>'*/?>
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend><?php echo __('ユーザー情報を修正する'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('last_name');
-		echo $this->Form->input('first_name');
+		echo $this->Form->input('last_name', array(
+            'label'=> '氏'));
+		echo $this->Form->input('first_name', array(
+            'label'=> '名'));
 		echo $this->Form->input('tel');
-		echo $this->Form->input('birthday');
+		echo $this->Form->input('birthday', array(
+            'label'=> '誕生日'));
 		echo $this->Form->input('email');
-        echo $this->Form->input('username');
-		echo $this->Form->input('password');
-        echo $this->Form->input('group_id');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+        echo $this->Form->input('username', array(
+            'label'=> 'ユーザー名'));
+		echo $this->Form->input('password', array(
+            'label'=> 'パスワード'));
+        echo $this->Form->input('group_id', array(
+            'label'=> '権限グループ'));
+		echo $this->Form->input('created_time', array(
+            'label'=> '作成日時'));
+		echo $this->Form->input('modified_time', array(
+            'label'=> '修正日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('修正を反映')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>

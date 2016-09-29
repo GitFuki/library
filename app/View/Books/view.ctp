@@ -146,6 +146,7 @@ echo "</pre>";
         <?php endif; ?>
     </ul>
 </div>
+<hr style="clear:both; margin:20px 0 20px 0">
 <div class="related">
 	<h3><?php echo __('「' . $book['Book']['name'] . '」の予約リスト一覧'); ?></h3>
 	<?php if (!empty($book['Bookinglist'])): ?>
@@ -185,6 +186,7 @@ echo "</pre>";
 		</ul>
 	</div>
 </div>
+
 <div class="related">
 	<h3><?php echo __('「' . $book['Book']['name'] . '」の貸出リスト一覧'); ?></h3>
 	<?php if (!empty($book['Borrowinglist'])): ?>

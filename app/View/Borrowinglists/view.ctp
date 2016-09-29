@@ -6,32 +6,32 @@
 			<?php echo h($borrowinglist['Borrowinglist']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Book'); ?></dt>
+		<dt><?php echo __('タイトル'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($borrowinglist['Book']['name'], array('controller' => 'books', 'action' => 'view', $borrowinglist['Book']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
+		<dt><?php echo __('ユーザー'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($borrowinglist['User']['id'], array('controller' => 'users', 'action' => 'view', $borrowinglist['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Borrowed Time'); ?></dt>
+		<dt><?php echo __('貸出日'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['borrowed_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Return Time'); ?></dt>
+		<dt><?php echo __('返却日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['return_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('変更日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['modified_time']); ?>
 			&nbsp;

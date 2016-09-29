@@ -4,11 +4,11 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('name','社名'); ?></th>
             <?php if ($user['Group']['name'] == 'administrators'): ?>
-            <th><?php echo $this->Paginator->sort('created_time'); ?></th>
-            <th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+            <th><?php echo $this->Paginator->sort('created_time','作成日時'); ?></th>
+            <th><?php echo $this->Paginator->sort('modified_time','修正日時'); ?></th>
+			<th class="actions"><?php echo __('権限操作'); ?></th>
             <?php endif; ?>
 	</tr>
 	</thead>
@@ -21,9 +21,9 @@
         <td><?php echo h($publisher['Publisher']['created_time']); ?>&nbsp;</td>
         <td><?php echo h($publisher['Publisher']['modified_time']); ?>&nbsp;</td>
         <td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $publisher['Publisher']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $publisher['Publisher']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $publisher['Publisher']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $publisher['Publisher']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $publisher['Publisher']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $publisher['Publisher']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $publisher['Publisher']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $publisher['Publisher']['id']))); ?>
 		</td>
         <?php endif; ?>
 	</tr>

@@ -81,6 +81,7 @@ class PublishersController extends AppController {
 		} else {
 			$options = array('conditions' => array('Publisher.' . $this->Publisher->primaryKey => $id));
 			$this->request->data = $this->Publisher->find('first', $options);
+            $this->set('publisherlists', $this->request->data);
 		}
 	}
 

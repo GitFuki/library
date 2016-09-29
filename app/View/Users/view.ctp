@@ -1,3 +1,7 @@
+<?php
+/*echo '<pre>';
+ print_r($book);
+echo '</pre>'*/?>
 <div class="users view">
 <h2><?php echo __('ユーザー詳細情報'); ?></h2>
 	<dl>
@@ -6,12 +10,12 @@
 			<?php echo h($user['User']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Last Name'); ?></dt>
+		<dt><?php echo __('氏'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['last_name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
+		<dt><?php echo __('名'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['first_name']); ?>
 			&nbsp;
@@ -21,7 +25,7 @@
 			<?php echo h($user['User']['tel']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Birthday'); ?></dt>
+		<dt><?php echo __('誕生日'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['birthday']); ?>
 			&nbsp;
@@ -31,22 +35,22 @@
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-        <dt><?php echo __('Username'); ?></dt>
+        <dt><?php echo __('ユーザー名'); ?></dt>
         <dd>
             <?php echo h($user['User']['username']); ?>
             &nbsp;
         </dd>
-		<dt><?php echo __('Password'); ?></dt>
+		<dt><?php echo __('パスワード'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['password']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('修正日時'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['modified_time']); ?>
 			&nbsp;
@@ -70,14 +74,14 @@
         <?php endif; ?>
     </ul>
 </div>
+<hr style="clear:both; margin:20px 0 20px 0">
 <div class="related">
-	<h3><?php echo __('Related Bookinglists'); ?></h3>
+	<h3><?php echo __($user['User']['username'].'さんが予約している本'); ?></h3>
 	<?php if (!empty($user['Bookinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Book Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Booking Start Time'); ?></th>
 		<th><?php echo __('Booking Expire Time'); ?></th>
 		<th><?php echo __('Created Time'); ?></th>
@@ -88,7 +92,6 @@
 		<tr>
 			<td><?php echo $bookinglist['id']; ?></td>
 			<td><?php echo $bookinglist['book_id']; ?></td>
-			<td><?php echo $bookinglist['user_id']; ?></td>
 			<td><?php echo $bookinglist['booking_start_time']; ?></td>
 			<td><?php echo $bookinglist['booking_expire_time']; ?></td>
 			<td><?php echo $bookinglist['created_time']; ?></td>
@@ -105,18 +108,17 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('予約リストを追加する'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Borrowinglists'); ?></h3>
+	<h3><?php echo __($user['User']['username'].'さんが借りている本'); ?></h3>
 	<?php if (!empty($user['Borrowinglist'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Book Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Borrowed Time'); ?></th>
 		<th><?php echo __('Return Time'); ?></th>
 		<th><?php echo __('Created Time'); ?></th>
@@ -127,7 +129,6 @@
 		<tr>
 			<td><?php echo $borrowinglist['id']; ?></td>
 			<td><?php echo $borrowinglist['book_id']; ?></td>
-			<td><?php echo $borrowinglist['user_id']; ?></td>
 			<td><?php echo $borrowinglist['borrowed_time']; ?></td>
 			<td><?php echo $borrowinglist['return_time']; ?></td>
 			<td><?php echo $borrowinglist['created_time']; ?></td>
@@ -144,7 +145,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Borrowinglist'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('貸出中リストを追加する'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>

@@ -3,12 +3,15 @@
 	<fieldset>
 		<legend><?php echo __('出版社を追加する'); ?></legend>
 	<?php
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
-		echo $this->Form->input('name');
+		echo $this->Form->input('name', array(
+            'label'=> '社名'));
+    echo $this->Form->input('created_time', array(
+        'label'=> '作成日時'));
+    echo $this->Form->input('modified_time', array(
+        'label'=> '変更日時'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('追加する')); ?>
 </div>
 <div class="actions">
     <h3><?php echo __('メニュー'); ?></h3>
