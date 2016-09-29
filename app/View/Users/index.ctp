@@ -1,18 +1,20 @@
 <div class="users index">
-	<h2><?php echo __('Users'); ?></h2>
+	<h2><?php echo __('ユーザー一覧'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
+			<th><?php echo $this->Paginator->sort('last_name','氏'); ?></th>
+			<th><?php echo $this->Paginator->sort('first_name','名'); ?></th>
 			<th><?php echo $this->Paginator->sort('tel'); ?></th>
-			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
+			<th><?php echo $this->Paginator->sort('birthday','誕生日'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('created_time'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified_time'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+            <th><?php echo $this->Paginator->sort('username','ユーザ名'); ?></th>
+			<!--<th><?php /*echo $this->Paginator->sort('password','パスワード'); */?></th>-->
+            <th><?php echo $this->Paginator->sort('group_id','権限グループ'); ?></th>
+			<th><?php echo $this->Paginator->sort('created_time','作成日時'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified_time','変更日時'); ?></th>
+			<th class="actions"><?php echo __('権限操作'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -24,13 +26,15 @@
 		<td><?php echo h($user['User']['tel']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['birthday']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
+        <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
+		<!--<td><?php /*echo h($user['User']['password']); */?>&nbsp;</td>-->
+		<td><?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created_time']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified_time']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
+			<?php echo $this->Html->link(__('詳細'), array('action' => 'view', $user['User']['id'])); ?>
+			<?php echo $this->Html->link(__('修正'), array('action' => 'edit', $user['User']['id'])); ?>
+			<?php echo $this->Form->postLink(__('削除'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -51,12 +55,18 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Bookinglists'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Borrowinglists'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Borrowinglist'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
-	</ul>
+    <h3><?php echo __('メニュー'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('本を探す'), array('controller' => 'books', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('著者一覧'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('貸出中リスト'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('予約リスト'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
+            <li><?php echo $this->Html->link(__('出版社一覧'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('図書種別一覧'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('権限グループ一覧'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+            <hr style="clear:both; margin:20px 0 20px 0">
+            <li><?php echo $this->Html->link(__('ユーザーを追加する'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+        <?php endif; ?>
+    </ul>
 </div>

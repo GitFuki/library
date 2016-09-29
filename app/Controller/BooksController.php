@@ -1,5 +1,8 @@
 <?php
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 App::uses('AppController', 'Controller');
+App::uses('Borrowinglist', 'Model');
+
 /**
  * Books Controller
  *
@@ -17,7 +20,7 @@ class BooksController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
     //
-    public $helpers = array('Paginator');
+    public $helpers = array('Paginator', 'Form');
 
 /**
  * index method
@@ -25,6 +28,12 @@ class BooksController extends AppController {
  * @return void
  */
 	public function index() {
+
+        $passwordHasher = new BlowfishPasswordHasher();
+        //$passwordHasher->hash("1234");
+      /*  print_r($passwordHasher->hash("1234"));*/
+
+
 		$this->Book->recursive = 0;
         //ページネータをセット
         $this->Paginator->settings = array(
@@ -39,7 +48,7 @@ class BooksController extends AppController {
 
 /**
  * view method
- *
+ *00000000
  * @throws NotFoundException
  * @param string $id
  * @return void
@@ -49,8 +58,41 @@ class BooksController extends AppController {
 			throw new NotFoundException(__('Invalid book'));
 		}
 		$options = array('conditions' => array('Book.' . $this->Book->primaryKey => $id));
+
 		$this->set('book', $this->Book->find('first', $options));
-	}
+
+        $Borrowinglist = new Borrowinglist();
+        $result = $Borrowinglist->find('first', array(
+            'conditions' => array('Borrowinglist.book_id' => $id)
+        ));
+
+        $Bookinglist = new Bookinglist();
+        $result_booking = $Bookinglist->find('first', array(
+            'conditions' => array('Bookinglist.book_id' => $id)
+        ));
+       /* echo "<pre>";
+        print_r($result_booking);
+        print_r($result_booking['Bookinglist']['book_id']);
+        if(($result_booking['Bookinglist']['book_id']) == $id){
+            echo'hogehoge';
+        } else {
+            echo'残念';
+        }
+        echo "</pre>";*/
+
+//        echo "<pre>";
+//        print_r($result);
+//        print_r($result['Borrowinglist']['book_id']);
+//        if(($result['Borrowinglist']['book_id']) == $id){
+//            echo'hogehoge';
+//        } else {
+//            echo'残念';
+//        }
+//        echo "</pre>";
+//
+       $this->set(compact('result', $result));
+        $this->set(compact('result_booking', $result_booking));
+    }
 
 /**
  * add method
@@ -99,6 +141,8 @@ class BooksController extends AppController {
 		$publishers = $this->Book->Publisher->find('list');
 		$fields = $this->Book->Field->find('list');
 		$this->set(compact('authors', 'publishers', 'fields'));
+        $this->set('books', $this->request->data);
+        //print_r($this->request->data);
 	}
 
 /**
@@ -128,25 +172,41 @@ class BooksController extends AppController {
     public function search(){
 
         //searching text, for example, "html", will post to the search() action first and then issue a redirect to /books/index?q=html.
-        if($this->request->is('put') || $this->request->is('post')){
+        if ($this->request->is('put') || $this->request->is('post')) {
+            if (isset($this->request->data['Book']['searchByTitle'])) {
+                $query = $this->request->data['Book']['searchByTitle'];
+                $type = 't';
+            } elseif (isset($this->request->data['Book']['searchByAuthor'])) {
+                $query = $this->request->data['Book']['searchByAuthor'];
+                $type = 'a';
+            } elseif (isset($this->request->data['Book']['searchByIsbn'])) {
+                $query = $this->request->data['Book']['searchByIsbn'];
+                $type = 'i';
+            }
+
             return $this->redirect(array(
                 '?' => array(
-                    'q' =>$this->request->data('Book.searchQuery')
+                    'q' =>$query,
+                    't' =>$type
                 )
                 ));
         }
             $this->Book->recursive =0;
             $searchQuery = $this->request->query('q');
+            $searchType = $this->request->query('t');
+        $this->log($searchQuery);
 
         //Configure the Book component using the following setting.
             $this->Paginator->settings = array(
                 'Book' => array(
                     'findType' => 'search',
-                    'searchQuery' => $searchQuery
+                    'searchQuery' => $searchQuery,
+                    'searchType' => $searchType
                 )
             );
             $this->set('books', $this->Paginator->paginate());
             $this->set('searchQuery', $searchQuery);
+            $this->set('searchType', $searchType);
             $this->render('index');
 
 

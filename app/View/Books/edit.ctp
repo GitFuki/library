@@ -1,40 +1,57 @@
 <div class="books form">
-<?php echo $this->Form->create('Book'); ?>
+<?php echo $this->Form->create('Book', array('type' => 'file')); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Book'); ?></legend>
+		<legend><?php echo __('「' . $books['Book']['name'].'」を修正する'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('author_id');
-		echo $this->Form->input('publisher_id');
-		echo $this->Form->input('published');
-		echo $this->Form->input('field_id');
-		echo $this->Form->input('bestseller');
-		echo $this->Form->input('price');
-		echo $this->Form->input('page');
+		echo $this->Form->input('name', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('author_id', array(
+            'label'=> '著者名'));
+    echo $this->Form->input('photo', array('type' => 'file',
+        'label'=> '表紙カバー'));
+    echo '【選択中の画像】<br> ';
+    $base = $this->Html->url( '/../files/book/photo/');
+    echo $base.$books['Book']['photo_dir'].'/' . $books['Book']['photo'] . '<br>';
+    echo $this->Html->image($base.$books['Book']['photo_dir'].'/' . $books['Book']['photo'], array('class' => 'book-icon', 'alt' => $books['Book']['name'], 'width' => '100px'));
+    echo $this->Form->input('photo_dir', array('type' => 'hidden'));
+		echo $this->Form->input('publisher_id', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('published', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('field_id', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('bestseller', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('price', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('page', array(
+            'label'=> '著者名'));
 		echo $this->Form->input('isbn');
-		echo $this->Form->input('summary');
-		echo $this->Form->input('created_time');
-		echo $this->Form->input('modified_time');
+		echo $this->Form->input('summary', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('created_time', array(
+            'label'=> '著者名'));
+		echo $this->Form->input('modified_time', array(
+            'label'=> '著者名'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('修正を反映')); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Book.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('Book.id')))); ?></li>
-		<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Authors'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Author'), array('controller' => 'authors', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Publishers'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Publisher'), array('controller' => 'publishers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Fields'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Field'), array('controller' => 'fields', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Bookinglists'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Bookinglist'), array('controller' => 'bookinglists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Borrowinglists'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Borrowinglist'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
-	</ul>
+    <h3><?php echo __('メニュー'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('著者一覧'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('貸出中リスト'), array('controller' => 'borrowinglists', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('予約リスト'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
+            <li><?php echo $this->Html->link(__('出版社一覧'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('図書種別一覧'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('ユーザー一覧'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('権限グループ一覧'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+            <hr style="clear:both; margin:20px 0 20px 0">
+            <li><?php echo $this->Html->link(__('本を追加する'), array('controller' => 'books', 'action' => 'add')); ?> </li>
+            <li><?php echo $this->Html->link(__('本を探すに戻る'), array('controller' => 'books', 'action' => 'index')); ?> </li>
+        <?php endif; ?>
+    </ul>
 </div>

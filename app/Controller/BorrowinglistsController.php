@@ -87,6 +87,8 @@ class BorrowinglistsController extends AppController {
 		$books = $this->Borrowinglist->Book->find('list');
 		$users = $this->Borrowinglist->User->find('list');
 		$this->set(compact('books', 'users'));
+        $this->set('borrowings', $this->request->data);
+        //print_r($this->request->data);
 	}
 
 /**

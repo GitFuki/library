@@ -17,6 +17,65 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('register','login', 'logout');
+//        $this->Auth->allow();
+//        $this->Auth->allow('initDB');
+    }
+
+    public function initDB() {
+        $group = $this->User->Group;
+        //管理者グループには全てを許可する
+        $group->id = 1;
+        $this->Acl->allow($group, 'controllers');
+
+        //マネージャグループには 下記 に対するアクセスを許可する
+        $group->id = 2;
+        $this->Acl->deny($group, 'controllers');
+        $this->Acl->allow($group, 'controllers/Books');
+        $this->Acl->allow($group, 'controllers/Publishers');
+        $this->Acl->allow($group, 'controllers/Borrowinglists');
+        $this->Acl->allow($group, 'controllers/Bookinglists');
+
+        //ユーザグループには何も追加と編集を許可しない
+        $group->id = 3;
+        $this->Acl->deny($group, 'controllers');
+        //馬鹿げた「ビューが見つからない」というエラーメッセージを表示させないために exit を追加します
+        echo "all done";
+        exit;
+    }
+
+    public function login(){
+        if ($this->request->is('post')){
+            if($this->Auth->login()){
+                $this->redirect($this->Auth->redirectURL('../books/index'));
+            } else {
+                $this->Flash->error(__('Invalid username or password, try again'));
+            }
+        }
+    }
+
+    public function register(){
+        //$this->requestにPOSTされたデータが入っている
+        //POSTメソッドかつユーザ追加が成功したら
+        if($this->request->is('post') && $this->User->save($this->request->data)){
+            //ログイン
+            //$this->request->dataの値を使用してログインする規約になっている
+            $this->Auth->login();
+            $this->redirect('../books/index');
+        }
+    }
+
+    public function logout() {
+//        $this->Auth->logout();
+//        $this->redirect('login');
+        $this->Flash->set('ログアウトしました。');
+//        $this->redirect($this->Auth->logout('../books/index'));
+        $this->Auth->logout();
+        $this->redirect('../books/index');
+    }
+
 /**
  * index method
  *
@@ -38,8 +97,11 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+        $this->set('user', $this->User->findById($id));
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+        $groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
 	}
 
 /**
@@ -57,6 +119,8 @@ class UsersController extends AppController {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		}
+        $groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
 	}
 
 /**
@@ -78,9 +142,11 @@ class UsersController extends AppController {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
+            $this->request->data = $this->User->findById($id);
+            unset($this->request->data['User']['password']);
 		}
+		$groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
 	}
 
 /**
@@ -103,4 +169,6 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
 }

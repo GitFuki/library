@@ -40,6 +40,7 @@ class PublishersController extends AppController {
 		}
 		$options = array('conditions' => array('Publisher.' . $this->Publisher->primaryKey => $id));
 		$this->set('publisher', $this->Publisher->find('first', $options));
+
 	}
 
 /**
@@ -80,6 +81,7 @@ class PublishersController extends AppController {
 		} else {
 			$options = array('conditions' => array('Publisher.' . $this->Publisher->primaryKey => $id));
 			$this->request->data = $this->Publisher->find('first', $options);
+            $this->set('publisherlists', $this->request->data);
 		}
 	}
 

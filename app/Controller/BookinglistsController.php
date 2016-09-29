@@ -87,6 +87,8 @@ class BookinglistsController extends AppController {
 		$books = $this->Bookinglist->Book->find('list');
 		$users = $this->Bookinglist->User->find('list');
 		$this->set(compact('books', 'users'));
+        $this->set('bookinglists', $this->request->data);
+        //print_r($this->request->data);
 	}
 
 /**
@@ -109,4 +111,9 @@ class BookinglistsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->Auth->allow('add');
+    }
+
 }

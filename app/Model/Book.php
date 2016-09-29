@@ -144,6 +144,10 @@ class Book extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'photo' => array(
+            'rule' => 'isUnderPhpSizeLimit',
+            'message' => 'File exceeds upload filesize limit'
+        )
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -216,27 +220,50 @@ public $findMethods = array('search' => true);
     protected function _findSearch($state, $query, $results = array()){
         if($state === 'before'){
             $searchQuery = Hash::get($query, 'searchQuery');
-            $searchConditions = array(
+            $searchType = Hash::get($query, 'searchType');
+            if($searchType=='i'){
+                $searchConditions = array(
+                    'or' => array(
+                        "{$this->alias}.isbn LIKE" => '%' . $searchQuery . '%'
+                    )
+                );
+            }elseif($searchType=='t'){
+                $searchConditions = array(
+                    'or' => array(
+                        "{$this->alias}.name LIKE" => '%' . $searchQuery . '%'
+                    )
+                );
+            }elseif($searchType=='a'){
+                $searchConditions = array(
+                    'or' => array(
+                        "Author.name LIKE" => '%' . $searchQuery . '%'
+                    )
+                );
+            }
+            /*$searchConditions = array(
                 'or' => array(
                     "{$this->alias}.name LIKE" => '%' . $searchQuery . '%',
-                    /*"{$this->alias}.author LIKE" => '%' . $searchQuery . '%'*/
+//                    "{$this->alias}.author LIKE" => '%' . $searchQuery . '%',
+                    "{$this->alias}.isbn LIKE" => '%' . $searchQuery . '%'
                 )
-            );
+            );*/
             $query['conditions'] = array_merge($searchConditions, (array)$query['conditions']);
+//            $query['joins'] = array("type" => "INNER",
+//                                     "alias" => "",
+//                                     "table" => 'author',
+//                                     "conditions" => array("book.author_id=author.id"));
             return $query;
         }
         return $results;
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public $actsAs = array(
+        'Upload.Upload' => array(
+            'photo' => array(
+                'fields' => array(
+                    'dir' => 'photo_dir'
+                ),
+            )
+        )
+    );
 }

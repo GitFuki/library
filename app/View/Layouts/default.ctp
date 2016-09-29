@@ -21,6 +21,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<title>かけばけ図書館</title>
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
@@ -38,7 +39,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<h1><?php echo 'かけばけ図書館 | 蔵書検索・予約システム'; ?></h1>
+			<div id="header_menu">
+				<?php
+				if(isset($user)):
+					print("こんにちは <strong>".h($user['username'])."</strong>さん<br>");
+					echo $this->Html->link('ログアウト', '/users/logout');
+				else:
+					echo $this->Html->link('ログイン', '/users/login'), "<br>";
+					echo $this->Html->link('新規登録', '/users/register');
+				endif;
+				?>
+			</div>
 		</div>
 		<div id="content">
 
@@ -47,15 +59,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
+			<?php echo '&copy; Cake Bake Library All Rights Reserved.';
 			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
 		</div>
 	</div>
 </body>

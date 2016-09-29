@@ -50,6 +50,20 @@ class Author extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'detail' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'photo' => array(
+            'rule' => 'isUnderPhpSizeLimit',
+            'message' => 'File exceeds upload filesize limit'
+        )
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -74,5 +88,13 @@ class Author extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+    public $actsAs = array(
+        'Upload.Upload' => array(
+            'photo' => array(
+                'fields' => array(
+                    'dir' => 'photo_dir'
+                ),
+            )
+        )
+    );
 }

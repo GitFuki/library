@@ -1,37 +1,37 @@
 <div class="borrowinglists view">
-<h2><?php echo __('Borrowinglist'); ?></h2>
+<h2><?php echo __('「' . $borrowinglist['Book']['name'] . '」の貸出情報'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Book'); ?></dt>
+		<dt><?php echo __('タイトル'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($borrowinglist['Book']['name'], array('controller' => 'books', 'action' => 'view', $borrowinglist['Book']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
+		<dt><?php echo __('ユーザー'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($borrowinglist['User']['id'], array('controller' => 'users', 'action' => 'view', $borrowinglist['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Borrowed Time'); ?></dt>
+		<dt><?php echo __('貸出日'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['borrowed_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Return Time'); ?></dt>
+		<dt><?php echo __('返却日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['return_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created Time'); ?></dt>
+		<dt><?php echo __('作成日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['created_time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified Time'); ?></dt>
+		<dt><?php echo __('変更日時'); ?></dt>
 		<dd>
 			<?php echo h($borrowinglist['Borrowinglist']['modified_time']); ?>
 			&nbsp;
@@ -39,15 +39,18 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Borrowinglist'), array('action' => 'edit', $borrowinglist['Borrowinglist']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Borrowinglist'), array('action' => 'delete', $borrowinglist['Borrowinglist']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $borrowinglist['Borrowinglist']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Borrowinglists'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Borrowinglist'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+    <h3><?php echo __('メニュー'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('本を探す'), array('controller' => 'books', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('著者一覧'), array('controller' => 'authors', 'action' => 'index')); ?> </li>
+        <li><?php echo $this->Html->link(__('予約リスト'), array('controller' => 'bookinglists', 'action' => 'index')); ?> </li>
+        <?php if ($user['Group']['name'] == 'administrators'): ?>
+            <li><?php echo $this->Html->link(__('出版社一覧'), array('controller' => 'publishers', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('図書種別一覧'), array('controller' => 'fields', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('ユーザー一覧'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+            <li><?php echo $this->Html->link(__('権限グループ一覧'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+            <hr style="clear:both; margin:20px 0 20px 0">
+            <li><?php echo $this->Html->link(__('貸出中リストに追加する'), array('controller' => 'borrowinglists', 'action' => 'add')); ?> </li>
+        <?php endif; ?>
+    </ul>
 </div>

@@ -80,6 +80,8 @@ class FieldsController extends AppController {
 		} else {
 			$options = array('conditions' => array('Field.' . $this->Field->primaryKey => $id));
 			$this->request->data = $this->Field->find('first', $options);
+            $this->set('fields', $this->request->data);
+            //print_r($this->request->data);
 		}
 	}
 
